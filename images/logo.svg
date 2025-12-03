@@ -1,0 +1,96 @@
+<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Main metallic gradient (light to dark from left to right) -->
+    <linearGradient id="metallic" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#1e40af;stop-opacity:1" />
+      <stop offset="30%" style="stop-color:#2563eb;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#60a5fa;stop-opacity:1" />
+      <stop offset="70%" style="stop-color:#3b82f6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1e3a8a;stop-opacity:1" />
+    </linearGradient>
+
+    <!-- Darker gradient for depth layers -->
+    <linearGradient id="darkLayer" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#0f1f5a;stop-opacity:1" />
+      <stop offset="30%" style="stop-color:#1e3a8a;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#1e40af;stop-opacity:1" />
+      <stop offset="70%" style="stop-color:#1e3a8a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0c1844;stop-opacity:1" />
+    </linearGradient>
+
+    <!-- Glossy overlay gradient (top to bottom) -->
+    <linearGradient id="gloss" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.5" />
+      <stop offset="40%" style="stop-color:#93c5fd;stop-opacity:0.3" />
+      <stop offset="100%" style="stop-color:#1e40af;stop-opacity:0.1" />
+    </linearGradient>
+
+    <!-- Bevel highlight (top-left edge) -->
+    <linearGradient id="bevelHighlight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#60a5fa;stop-opacity:0" />
+    </linearGradient>
+
+    <!-- Bevel shadow (bottom-right edge) -->
+    <linearGradient id="bevelShadow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#000000;stop-opacity:0" />
+      <stop offset="100%" style="stop-color:#000000;stop-opacity:0.6" />
+    </linearGradient>
+
+    <!-- Multi-layer drop shadow for depth -->
+    <filter id="depth">
+      <feDropShadow dx="2" dy="2" stdDeviation="1" flood-color="#000000" flood-opacity="0.3"/>
+      <feDropShadow dx="4" dy="4" stdDeviation="2" flood-color="#000000" flood-opacity="0.4"/>
+      <feDropShadow dx="8" dy="8" stdDeviation="6" flood-color="#000000" flood-opacity="0.5"/>
+    </filter>
+
+    <!-- Inner shadow for depth -->
+    <filter id="innerShadow">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="2"/>
+      <feOffset dx="2" dy="2" result="offsetblur"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.5"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Shadow/extrusion layers (creating 3D depth) -->
+  <polygon points="72,12 37,52 52,52 32,92 77,47 62,47"
+           fill="url(#darkLayer)"
+           opacity="0.7"/>
+  <polygon points="71.5,11.5 36.5,51.5 51.5,51.5 31.5,91.5 76.5,46.5 61.5,46.5"
+           fill="url(#darkLayer)"
+           opacity="0.6"/>
+  <polygon points="71,11 36,51 51,51 31,91 76,46 61,46"
+           fill="url(#darkLayer)"
+           opacity="0.5"/>
+  <polygon points="70.5,10.5 35.5,50.5 50.5,50.5 30.5,90.5 75.5,45.5 60.5,45.5"
+           fill="url(#darkLayer)"
+           opacity="0.4"/>
+
+  <!-- Main lightning bolt with filter -->
+  <polygon points="70,10 35,50 50,50 30,90 75,45 60,45"
+           fill="url(#metallic)"
+           filter="url(#depth)"/>
+
+  <!-- Bevel shadow (bottom-right edge for depth) -->
+  <polygon points="70,10 35,50 50,50 30,90 75,45 60,45"
+           fill="url(#bevelShadow)"
+           opacity="0.4"/>
+
+  <!-- Bevel highlight (top-left edge for depth) -->
+  <polygon points="70,10 35,50 50,50 30,90 75,45 60,45"
+           fill="url(#bevelHighlight)"
+           opacity="0.5"/>
+
+  <!-- Glossy overlay for shine -->
+  <polygon points="70,10 35,50 50,50 30,90 75,45 60,45"
+           fill="url(#gloss)"/>
+
+
+
+</svg>

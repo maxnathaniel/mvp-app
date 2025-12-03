@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EdTech Learning Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Source Sans 3', sans-serif;
+            background: #f8f9fb;
+            color: #1a1a1a;
+            margin: 0;
+        }
+        .course-nav {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .course-sidebar {
+            background: #ffffff;
+            box-shadow: 2px 0 12px rgba(0,0,0,0.04);
+        }
+        .module-item {
+            border-radius: 12px;
+            margin-bottom: 8px;
+            padding: 16px;
+            transition: all 0.2s;
+            background: #f8f9fb;
+        }
+        .module-item:hover {
+            background: #ffffff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            transform: translateX(4px);
+        }
+        .module-item.active {
+            background: linear-gradient(135deg, #f0f4ff 0%, #f5f3ff 100%);
+            border-left: 4px solid #6366f1;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.15);
+        }
+        .video-player {
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            aspect-ratio: 16/9;
+            border-radius: 16px;
+            margin: 24px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+        }
+        .progress-bar {
+            height: 6px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #10b981 0%, #14b8a6 100%);
+            transition: width 0.3s;
+            border-radius: 8px;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(99, 102, 241, 0.4);
+        }
+        .btn-secondary {
+            background: white;
+            color: #6366f1;
+            border: 2px solid #e5e7eb;
+            padding: 14px 28px;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-secondary:hover {
+            border-color: #6366f1;
+            background: #f9fafb;
+        }
+        .rating-stars {
+            color: #fbbf24;
+        }
+        .tab-active {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 10px;
+        }
+        .tab-button {
+            padding: 10px 20px;
+            border-radius: 10px;
+            transition: all 0.2s;
+        }
+        .tab-button:hover {
+            background: #f3f4f6;
+        }
+        .checkmark {
+            color: #10b981;
+            background: #d1fae5;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+        .locked {
+            opacity: 0.5;
+        }
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Navigation -->
+    <div class="course-nav">
+        <div class="px-6 py-5 flex items-center justify-between">
+            <div class="flex items-center gap-6">
+                <div class="text-2xl font-bold text-white">LearnHub</div>
+                <div class="text-sm text-white/90 font-medium">Modern Web Development with React</div>
+            </div>
+            <div class="flex items-center gap-6">
+                <div class="flex items-center gap-3">
+                    <div class="text-sm font-semibold text-white/90">Course Progress</div>
+                    <div class="w-40">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 65%"></div>
+                        </div>
+                    </div>
+                    <div class="text-sm font-bold text-white">65%</div>
+                </div>
+                <button class="text-white/90 hover:text-white p-2 rounded-lg hover:bg-white/10 transition">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="flex">
+        <!-- Sidebar -->
+        <div class="course-sidebar w-96 h-screen overflow-y-auto">
+            <div class="p-6">
+                <div class="card mb-6">
+                    <div class="flex items-center justify-between mb-3">
+                        <h3 class="font-bold text-lg">Course Modules</h3>
+                        <span class="text-sm font-semibold text-gray-500 bg-gray-100 px-3 py-1 rounded-full">8 / 12</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 67%"></div>
+                    </div>
+                    <div class="text-xs text-gray-600 mt-2 font-medium">67% Complete</div>
+                </div>
+
+                <!-- Module 1 -->
+                <div class="module-item cursor-pointer">
+                    <div class="flex items-start gap-3">
+                        <div class="checkmark">✓</div>
+                        <div class="flex-1">
+                            <div class="font-semibold text-sm mb-1">Introduction to React</div>
+                            <div class="text-xs text-gray-500 font-medium">4 videos · 24 min</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Module 2 -->
+                <div class="module-item cursor-pointer">
+                    <div class="flex items-start gap-3">
+                        <div class="checkmark">✓</div>
+                        <div class="flex-1">
+                            <div class="font-semibold text-sm mb-1">Components & Props</div>
+                            <div class="text-xs text-gray-500 font-medium">6 videos · 38 min</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Module 3 -->
+                <div class="module-item cursor-pointer">
+                    <div class="flex items-start gap-3">
+                        <div class="checkmark">✓</div>
+                        <div class="flex-1">
+                            <div class="font-semibold text-sm mb-1">State & Lifecycle</div>
+                            <div class="text-xs text-gray-500 font-medium">5 videos · 32 min</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Module 4 - Active -->
+                <div class="module-item active cursor-pointer">
+                    <div class="flex items-start gap-3">
+                        <div style="color: #6366f1; background: #e0e7ff; border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; font-size: 10px;">▶</div>
+                        <div class="flex-1">
+                            <div class="font-bold text-sm mb-1" style="color: #6366f1;">Handling Events</div>
+                            <div class="text-xs text-gray-500 font-medium mb-3">7 videos · 42 min</div>
+                            <div class="space-y-2 pl-2 border-l-2 border-indigo-200">
+                                <div class="flex items-center gap-2 text-xs">
+                                    <span class="checkmark" style="width: 16px; height: 16px; font-size: 10px;">✓</span>
+                                    <span class="font-medium">Event Basics</span>
+                                    <span class="text-gray-400 ml-auto">6 min</span>
+                                </div>
+                                <div class="flex items-center gap-2 text-xs">
+                                    <span class="checkmark" style="width: 16px; height: 16px; font-size: 10px;">✓</span>
+                                    <span class="font-medium">Click Events</span>
+                                    <span class="text-gray-400 ml-auto">8 min</span>
+                                </div>
+                                <div class="flex items-center gap-2 text-xs font-bold" style="color: #6366f1;">
+                                    <span style="width: 16px; height: 16px; display: flex; align-items: center; justify-content: center;">▶</span>
+                                    <span>Form Handling</span>
+                                    <span class="text-gray-400 ml-auto font-medium">12 min</span>
+                                </div>
+                                <div class="flex items-center gap-2 text-xs text-gray-500">
+                                    <span style="width: 16px; height: 16px; display: flex; align-items: center; justify-content: center;">○</span>
+                                    <span class="font-medium">Event Propagation</span>
+                                    <span class="text-gray-400 ml-auto">9 min</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Module 5 -->
+                <div class="module-item cursor-pointer">
+                    <div class="flex items-start gap-3">
+                        <div style="color: #9ca3af; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; font-size: 14px;">○</div>
+                        <div class="flex-1">
+                            <div class="font-semibold text-sm mb-1">Hooks Deep Dive</div>
+                            <div class="text-xs text-gray-500 font-medium">8 videos · 52 min</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Module 6 -->
+                <div class="module-item cursor-pointer">
+                    <div class="flex items-start gap-3">
+                        <div style="color: #9ca3af; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; font-size: 14px;">○</div>
+                        <div class="flex-1">
+                            <div class="font-semibold text-sm mb-1">Context API</div>
+                            <div class="text-xs text-gray-500 font-medium">5 videos · 36 min</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Module 7 -->
+                <div class="module-item cursor-pointer">
+                    <div class="flex items-start gap-3">
+                        <div style="color: #9ca3af; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; font-size: 14px;">○</div>
+                        <div class="flex-1">
+                            <div class="font-semibold text-sm mb-1">React Router</div>
+                            <div class="text-xs text-gray-500 font-medium">6 videos · 44 min</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Module 8 - Locked -->
+                <div class="module-item locked cursor-not-allowed">
+                    <div class="flex items-start gap-3">
+                        <div style="color: #9ca3af; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; font-size: 14px;">🔒</div>
+                        <div class="flex-1">
+                            <div class="font-semibold text-sm mb-1">Advanced Patterns</div>
+                            <div class="text-xs text-gray-500 font-medium">7 videos · 48 min</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1 bg-white overflow-y-auto h-screen">
+            <!-- Video Player -->
+            <div class="video-player flex items-center justify-center">
+                <div class="text-center text-white">
+                    <div class="text-6xl mb-4">▶</div>
+                    <div class="text-lg">Form Handling in React</div>
+                    <div class="text-sm text-gray-300 mt-2">12:34 minutes</div>
+                </div>
+            </div>
+
+            <!-- Content Area -->
+            <div class="p-8 max-w-4xl">
+                <!-- Tabs -->
+                <div class="flex gap-3 mb-8">
+                    <button class="tab-active font-semibold text-sm">Overview</button>
+                    <button class="tab-button font-medium text-sm text-gray-600 hover:text-gray-900">Transcript</button>
+                    <button class="tab-button font-medium text-sm text-gray-600 hover:text-gray-900">Notes</button>
+                    <button class="tab-button font-medium text-sm text-gray-600 hover:text-gray-900">Downloads</button>
+                </div>
+
+                <!-- Video Info -->
+                <div class="card">
+                    <h1 class="text-3xl font-bold mb-4">Form Handling in React</h1>
+                    <div class="flex items-center gap-6 text-sm">
+                        <div class="flex items-center gap-2">
+                            <span class="rating-stars text-base">★★★★★</span>
+                            <span class="font-semibold text-gray-700">4.9</span>
+                            <span class="text-gray-500">(2,847 ratings)</span>
+                        </div>
+                        <div class="h-4 w-px bg-gray-300"></div>
+                        <div class="font-medium text-gray-700">12,453 students enrolled</div>
+                    </div>
+                </div>
+
+                <!-- Description -->
+                <div class="card">
+                    <h2 class="text-xl font-bold mb-4">About this video</h2>
+                    <p class="text-gray-700 leading-relaxed mb-4">
+                        In this lesson, you'll learn how to handle forms in React applications. We'll cover controlled components,
+                        form validation, and best practices for managing form state. By the end of this video, you'll be able to
+                        build complex forms with ease.
+                    </p>
+                    <p class="text-gray-700 leading-relaxed">
+                        Topics covered include input handling, textarea management, select dropdowns, checkboxes, radio buttons,
+                        and form submission. You'll also learn about common patterns for form validation and error handling.
+                    </p>
+                </div>
+
+                <!-- What You'll Learn -->
+                <div class="card">
+                    <h2 class="text-xl font-bold mb-4">What you'll learn</h2>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="flex items-start gap-3">
+                            <span class="checkmark">✓</span>
+                            <span class="text-sm text-gray-700 font-medium">Create controlled form components</span>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="checkmark">✓</span>
+                            <span class="text-sm text-gray-700 font-medium">Handle form submission events</span>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="checkmark">✓</span>
+                            <span class="text-sm text-gray-700 font-medium">Implement form validation</span>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="checkmark">✓</span>
+                            <span class="text-sm text-gray-700 font-medium">Manage complex form state</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Resources -->
+                <div class="card">
+                    <h2 class="text-xl font-bold mb-4">Resources</h2>
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between p-4 bg-gradient-to-r from-purple-50 to-indigo-50 rounded-xl hover:shadow-md cursor-pointer transition">
+                            <div class="flex items-center gap-3">
+                                <span class="text-2xl">📄</span>
+                                <span class="text-sm font-semibold">Form Handling Cheat Sheet.pdf</span>
+                            </div>
+                            <span class="text-xs text-gray-600 font-medium bg-white px-3 py-1 rounded-full">242 KB</span>
+                        </div>
+                        <div class="flex items-center justify-between p-4 bg-gradient-to-r from-purple-50 to-indigo-50 rounded-xl hover:shadow-md cursor-pointer transition">
+                            <div class="flex items-center gap-3">
+                                <span class="text-2xl">💻</span>
+                                <span class="text-sm font-semibold">Code Examples Repository</span>
+                            </div>
+                            <span class="text-xs font-semibold" style="color: #6366f1;">GitHub →</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation Buttons -->
+                <div class="flex items-center justify-between pt-4">
+                    <button class="btn-secondary">
+                        ← Previous: Click Events
+                    </button>
+                    <button class="btn-primary">
+                        Next: Event Propagation →
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

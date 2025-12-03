@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShipMVP - Build Your Startup in 2 Weeks</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #1a1a2e;
+            color: #e8e8f0;
+            overflow-x: hidden;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .grid-bg {
+            background-image: 
+                linear-gradient(rgba(59, 130, 246, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(59, 130, 246, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            background-position: center center;
+        }
+        
+        .glow-text {
+            text-shadow: 0 0 20px rgba(59, 130, 246, 0.5),
+                         0 0 40px rgba(59, 130, 246, 0.3);
+        }
+        
+        .glow-box {
+            box-shadow: 0 0 30px rgba(59, 130, 246, 0.2),
+                       inset 0 0 30px rgba(59, 130, 246, 0.05);
+        }
+        
+        .scan-line {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .scan-line::before {
+            content: '';
+            position: absolute;
+            top: -100%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, 
+                transparent, 
+                rgba(59, 130, 246, 0.1), 
+                transparent);
+            animation: scan 3s ease-in-out infinite;
+        }
+        
+        @keyframes scan {
+            0%, 100% { top: -100%; }
+            50% { top: 100%; }
+        }
+        
+        .tech-border {
+            position: relative;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            clip-path: polygon(
+                0 8px, 8px 0, calc(100% - 8px) 0, 100% 8px,
+                100% calc(100% - 8px), calc(100% - 8px) 100%,
+                8px 100%, 0 calc(100% - 8px)
+            );
+        }
+        
+        .btn-primary {
+            position: relative;
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            color: #0a0a0a;
+            font-weight: 700;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        @media (min-width: 640px) {
+            .btn-primary {
+                font-size: 14px;
+                padding: 16px 48px;
+            }
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(59, 130, 246, 0.4);
+        }
+        
+        .portfolio-card {
+            background: linear-gradient(135deg, rgba(30, 30, 50, 0.6), rgba(35, 35, 55, 0.6));
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .portfolio-card::before {
+            content: '';
+            position: absolute;
+            top: -100%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, transparent, rgba(59, 130, 246, 0.1));
+            transition: top 0.4s ease;
+            pointer-events: none;
+        }
+        
+        .portfolio-card a {
+            position: relative;
+            z-index: 10;
+        }
+        
+        .portfolio-card:hover::before {
+            top: 0;
+        }
+        
+        .portfolio-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(59, 130, 246, 0.6);
+            box-shadow: 0 12px 40px rgba(59, 130, 246, 0.3);
+        }
+        
+        .tech-stack-item {
+            background: rgba(59, 130, 246, 0.05);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            padding: 12px 24px;
+            clip-path: polygon(4px 0, 100% 0, 100% calc(100% - 4px), calc(100% - 4px) 100%, 0 100%, 0 4px);
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        
+        .tech-stack-item:hover {
+            background: rgba(59, 130, 246, 0.15);
+            border-color: rgba(59, 130, 246, 0.8);
+            transform: scale(1.05);
+        }
+        
+        .fade-in {
+            animation: fadeIn 1s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .stagger-1 { animation-delay: 0.1s; }
+        .stagger-2 { animation-delay: 0.2s; }
+        .stagger-3 { animation-delay: 0.3s; }
+        .stagger-4 { animation-delay: 0.4s; }
+        .stagger-5 { animation-delay: 0.5s; }
+        
+        .pulse-border {
+            animation: pulseBorder 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulseBorder {
+            0%, 100% { border-color: rgba(59, 130, 246, 0.3); }
+            50% { border-color: rgba(59, 130, 246, 0.8); }
+        }
+        
+        nav {
+            backdrop-filter: blur(10px);
+            background: rgba(26, 26, 46, 0.9);
+            border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+        }
+        
+        .hero-gradient {
+            background: radial-gradient(ellipse at top, rgba(59, 130, 246, 0.15), transparent 70%);
+        }
+
+        .contact-panel {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            max-width: 600px;
+            height: 100vh;
+            background: rgba(26, 26, 46, 0.98);
+            backdrop-filter: blur(20px);
+            border-left: 1px solid rgba(59, 130, 246, 0.3);
+            z-index: 100;
+            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow-y: auto;
+        }
+
+        .contact-panel.active {
+            right: 0;
+        }
+
+        .contact-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 99;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+
+        .contact-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+    </style>
+</head>
+<body class="grid-bg">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a href="#" class="flex items-center gap-2 sm:gap-3">
+                    <img src="images/logo.svg" width="36" height="36" class="sm:w-12 sm:h-12" alt="ShipMVP Logo" />
+                    <div class="text-lg sm:text-2xl font-bold glow-text" style="font-family: 'Inter', sans-serif;">
+                        Ship<span class="text-[#3b82f6]">MVP</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="#portfolio" class="hover:text-[#3b82f6] transition-colors">Portfolio</a>
+                    <a href="#process" class="hover:text-[#3b82f6] transition-colors">Process</a>
+                    <a href="blog.html" class="hover:text-[#3b82f6] transition-colors">Blog</a>
+                    <a href="#" onclick="openContactPanel(event)" class="hover:text-[#3b82f6] transition-colors">Contact</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button onclick="toggleMobileMenu()" class="md:hidden text-white hover:text-[#3b82f6] transition-colors">
+                    <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center pt-20 hero-gradient">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <div class="scan-line">
+                <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black mb-4 sm:mb-6 fade-in" style="animation-delay: 0.2s;">
+                    BUILD YOUR MVP<br/>
+                    <span class="text-[#3b82f6] glow-text">IN 30 DAYS</span>
+                </h1>
+            </div>
+
+            <p class="text-base sm:text-lg md:text-xl text-gray-400 mb-6 sm:mb-8 max-w-3xl mx-auto fade-in stagger-2" style="line-height: 1.8;">
+                Transform your startup vision into reality. Professional MVP development.
+                Fixed price. Zero compromise on quality.
+            </p>
+
+            <button class="btn-primary fade-in stagger-4" onclick="openContactPanel(event)" style="font-size: clamp(10px, 2.5vw, 14px); padding: clamp(10px, 3vw, 16px) clamp(20px, 6vw, 48px);">
+                START YOUR PROJECT
+            </button>
+            
+            <div class="mt-16 text-sm text-gray-500 fade-in stagger-5">
+                <div class="flex items-center justify-center gap-4 flex-wrap">
+                    <span>✓ Full-stack Development</span>
+                    <span>✓ Responsive Design</span>
+                    <span>✓ Production Ready</span>
+                    <span>✓ Source Code Included</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Grid -->
+    <section id="portfolio" class="py-24 px-6 bg-black/30">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 glow-text" style="font-family: 'Inter', sans-serif;">
+                    DEVELOPED <span class="text-[#3b82f6]">PROJECTS</span>
+                </h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+                <!-- Portfolio Item 1 -->
+                <div class="portfolio-card tech-border p-6">
+                    <a href="portfolio-ai-writer.html" class="block">
+                        <div class="aspect-video bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 mb-6 flex flex-col items-center justify-center border border-[#3b82f6]/20 rounded-lg overflow-hidden relative group">
+                            <div class="absolute inset-0 bg-black/40"></div>
+                            <div class="relative z-10 text-center p-2 sm:p-4 md:p-8">
+                                <div class="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 sm:mb-3 md:mb-4 text-[#3b82f6]">AI</div>
+                                <div class="text-base sm:text-lg md:text-xl font-bold mb-1 sm:mb-2">AI Content Writer</div>
+                                <div class="text-xs sm:text-sm text-gray-400 mb-2 sm:mb-3 md:mb-4">Dark theme editor with AI assistant</div>
+                                <div class="inline-block px-3 py-1.5 sm:px-4 sm:py-2 bg-[#3b82f6] text-white text-sm font-semibold group-hover:bg-[#2563eb] transition" style="border-radius: 6px;">
+                                    View Mockup →
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <h3 class="text-2xl font-bold mb-3" style="font-family: 'Inter', sans-serif;">AI Content Writer</h3>
+                    <p class="text-gray-400 mb-4">Advanced AI-powered content generation platform with real-time editing and SEO optimization.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-xs px-3 py-1 bg-[#3b82f6]/10 border border-[#3b82f6]/30 text-[#3b82f6]">NextJS</span>
+                        <span class="text-xs px-3 py-1 bg-[#3b82f6]/10 border border-[#3b82f6]/30 text-[#3b82f6]">OpenAI</span>
+                        <span class="text-xs px-3 py-1 bg-[#3b82f6]/10 border border-[#3b82f6]/30 text-[#3b82f6]">React</span>
+                    </div>
+                </div>
+
+                <!-- Portfolio Item 2 -->
+                <div class="portfolio-card tech-border p-6">
+                    <a href="portfolio-learning-platform.html" class="block">
+                        <div class="aspect-video bg-gradient-to-br from-blue-900 via-cyan-900 to-blue-900 mb-6 flex flex-col items-center justify-center border border-[#3b82f6]/20 rounded-lg overflow-hidden relative group">
+                            <div class="absolute inset-0 bg-black/40"></div>
+                            <div class="relative z-10 text-center p-2 sm:p-4 md:p-8">
+                                <div class="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 sm:mb-3 md:mb-4 text-[#3b82f6]">EDU</div>
+                                <div class="text-base sm:text-lg md:text-xl font-bold mb-1 sm:mb-2">EdTech Learning Hub</div>
+                                <div class="text-xs sm:text-sm text-gray-400 mb-2 sm:mb-3 md:mb-4">Interactive courses & progress tracking</div>
+                                <div class="inline-block px-3 py-1.5 sm:px-4 sm:py-2 bg-[#3b82f6] text-white text-sm font-semibold group-hover:bg-[#2563eb] transition" style="border-radius: 6px;">
+                                    View Mockup →
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <h3 class="text-2xl font-bold mb-3" style="font-family: 'Inter', sans-serif;">EdTech Learning Hub</h3>
+                    <p class="text-gray-400 mb-4">Interactive learning platform with video courses, quizzes, and progress tracking for students.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-xs px-3 py-1 bg-[#3b82f6]/10 border border-[#3b82f6]/30 text-[#3b82f6]">React</span>
+                        <span class="text-xs px-3 py-1 bg-[#3b82f6]/10 border border-[#3b82f6]/30 text-[#3b82f6]">Node.js</span>
+                        <span class="text-xs px-3 py-1 bg-[#3b82f6]/10 border border-[#3b82f6]/30 text-[#3b82f6]">MongoDB</span>
+                    </div>
+                </div>
+
+                <!-- Portfolio Item 3 -->
+                <div class="portfolio-card tech-border p-6">
+                    <a href="portfolio-admin-dashboard.html" class="block">
+                        <div class="aspect-video bg-gradient-to-br from-green-900 via-emerald-900 to-green-900 mb-6 flex flex-col items-center justify-center border border-[#3b82f6]/20 rounded-lg overflow-hidden relative group">
+                            <div class="absolute inset-0 bg-black/40"></div>
+                            <div class="relative z-10 text-center p-2 sm:p-4 md:p-8">
+                                <div class="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 sm:mb-3 md:mb-4 text-[#3b82f6]">ADMIN</div>
+                                <div class="text-base sm:text-lg md:text-xl font-bold mb-1 sm:mb-2">SaaS Admin Panel</div>
+                                <div class="text-xs sm:text-sm text-gray-400 mb-2 sm:mb-3 md:mb-4">Analytics & user management dashboard</div>
+                                <div class="inline-block px-3 py-1.5 sm:px-4 sm:py-2 bg-[#3b82f6] text-white text-sm font-semibold group-hover:bg-[#2563eb] transition" style="border-radius: 6px;">
+                                    View Mockup →
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <h3 class="text-2xl font-bold mb-3" style="font-family: 'Inter', sans-serif;">SaaS Admin Panel</h3>
+                    <p class="text-gray-400 mb-4">Comprehensive admin dashboard with analytics, user management, and real-time monitoring.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-xs px-3 py-1 bg-[#3b82f6]/10 border border-[#3b82f6]/30 text-[#3b82f6]">NextJS</span>
+                        <span class="text-xs px-3 py-1 bg-[#3b82f6]/10 border border-[#3b82f6]/30 text-[#3b82f6]">Python</span>
+                        <span class="text-xs px-3 py-1 bg-[#3b82f6]/10 border border-[#3b82f6]/30 text-[#3b82f6]">PostgreSQL</span>
+                    </div>
+                </div>
+
+                <!-- Portfolio Item 4 -->
+                <div class="portfolio-card tech-border p-6">
+                    <a href="portfolio-marketplace.html" class="block">
+                        <div class="aspect-video bg-gradient-to-br from-orange-900 via-red-900 to-orange-900 mb-6 flex flex-col items-center justify-center border border-[#3b82f6]/20 rounded-lg overflow-hidden relative group">
+                            <div class="absolute inset-0 bg-black/40"></div>
+                            <div class="relative z-10 text-center p-2 sm:p-4 md:p-8">
+                                <div class="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 sm:mb-3 md:mb-4 text-[#3b82f6]">WEB3</div>
+                                <div class="text-base sm:text-lg md:text-xl font-bold mb-1 sm:mb-2">NFT Marketplace</div>
+                                <div class="text-xs sm:text-sm text-gray-400 mb-2 sm:mb-3 md:mb-4">Web3 digital asset trading platform</div>
+                                <div class="inline-block px-3 py-1.5 sm:px-4 sm:py-2 bg-[#3b82f6] text-white text-sm font-semibold group-hover:bg-[#2563eb] transition" style="border-radius: 6px;">
+                                    View Mockup →
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <h3 class="text-2xl font-bold mb-3" style="font-family: 'Inter', sans-serif;">NFT Marketplace</h3>
+                    <p class="text-gray-400 mb-4">Web3 marketplace for buying, selling, and trading digital assets with wallet integration.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-xs px-3 py-1 bg-[#3b82f6]/10 border border-[#3b82f6]/30 text-[#3b82f6]">React</span>
+                        <span class="text-xs px-3 py-1 bg-[#3b82f6]/10 border border-[#3b82f6]/30 text-[#3b82f6]">Solidity</span>
+                        <span class="text-xs px-3 py-1 bg-[#3b82f6]/10 border border-[#3b82f6]/30 text-[#3b82f6]">Web3.js</span>
+                    </div>
+                </div>
+
+                <!-- Portfolio Item 5 -->
+                <div class="portfolio-card tech-border p-6">
+                    <a href="portfolio-fitness-app.html" class="block">
+                        <div class="aspect-video bg-gradient-to-br from-indigo-900 via-purple-900 to-indigo-900 mb-6 flex flex-col items-center justify-center border border-[#3b82f6]/20 rounded-lg overflow-hidden relative group">
+                            <div class="absolute inset-0 bg-black/40"></div>
+                            <div class="relative z-10 text-center p-2 sm:p-4 md:p-8">
+                                <div class="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 sm:mb-3 md:mb-4 text-[#3b82f6]">FIT</div>
+                                <div class="text-base sm:text-lg md:text-xl font-bold mb-1 sm:mb-2">Fitness Tracker Pro</div>
+                                <div class="text-xs sm:text-sm text-gray-400 mb-2 sm:mb-3 md:mb-4">Workout plans & nutrition logging</div>
+                                <div class="inline-block px-3 py-1.5 sm:px-4 sm:py-2 bg-[#3b82f6] text-white text-sm font-semibold group-hover:bg-[#2563eb] transition" style="border-radius: 6px;">
+                                    View Mockup →
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <h3 class="text-2xl font-bold mb-3" style="font-family: 'Inter', sans-serif;">Fitness Tracker Pro</h3>
+                    <p class="text-gray-400 mb-4">Mobile-first fitness tracking app with workout plans, nutrition logging, and social features.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-xs px-3 py-1 bg-[#3b82f6]/10 border border-[#3b82f6]/30 text-[#3b82f6]">React Native</span>
+                        <span class="text-xs px-3 py-1 bg-[#3b82f6]/10 border border-[#3b82f6]/30 text-[#3b82f6]">Node.js</span>
+                        <span class="text-xs px-3 py-1 bg-[#3b82f6]/10 border border-[#3b82f6]/30 text-[#3b82f6]">Firebase</span>
+                    </div>
+                </div>
+
+                <!-- Portfolio Item 6 -->
+                <div class="portfolio-card tech-border p-6">
+                    <a href="portfolio-fintech-app.html" class="block">
+                        <div class="aspect-video bg-gradient-to-br from-yellow-900 via-orange-900 to-yellow-900 mb-6 flex flex-col items-center justify-center border border-[#3b82f6]/20 rounded-lg overflow-hidden relative group">
+                            <div class="absolute inset-0 bg-black/40"></div>
+                            <div class="relative z-10 text-center p-2 sm:p-4 md:p-8">
+                                <div class="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 sm:mb-3 md:mb-4 text-[#3b82f6]">FINTECH</div>
+                                <div class="text-base sm:text-lg md:text-xl font-bold mb-1 sm:mb-2">Stocks Portfolio</div>
+                                <div class="text-xs sm:text-sm text-gray-400 mb-2 sm:mb-3 md:mb-4">Investment tracking & market insights</div>
+                                <div class="inline-block px-3 py-1.5 sm:px-4 sm:py-2 bg-[#3b82f6] text-white text-sm font-semibold group-hover:bg-[#2563eb] transition" style="border-radius: 6px;">
+                                    View Mockup →
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <h3 class="text-2xl font-bold mb-3" style="font-family: 'Inter', sans-serif;">Fintech Dashboard</h3>
+                    <p class="text-gray-400 mb-4">Real-time financial analytics platform with investment tracking and market insights.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-xs px-3 py-1 bg-[#3b82f6]/10 border border-[#3b82f6]/30 text-[#3b82f6]">NextJS</span>
+                        <span class="text-xs px-3 py-1 bg-[#3b82f6]/10 border border-[#3b82f6]/30 text-[#3b82f6]">Python</span>
+                        <span class="text-xs px-3 py-1 bg-[#3b82f6]/10 border border-[#3b82f6]/30 text-[#3b82f6]">Redis</span>
+                    </div>
+                </div>
+
+                <!-- Portfolio Item 7 -->
+                <!-- <div class="portfolio-card tech-border p-6">
+                    <a href="portfolio-social-platform.html" class="block">
+                        <div class="aspect-video bg-gradient-to-br from-teal-900 via-cyan-900 to-teal-900 mb-6 flex flex-col items-center justify-center border border-[#3b82f6]/20 rounded-lg overflow-hidden relative group">
+                            <div class="absolute inset-0 bg-black/40"></div>
+                            <div class="relative z-10 text-center p-8">
+                                <div class="text-4xl font-bold mb-4 text-[#3b82f6]">SOCIAL</div>
+                                <div class="text-xl font-bold mb-2">Creator Social Hub</div>
+                                <div class="text-sm text-gray-400 mb-4">Monetization & collaboration platform</div>
+                                <div class="inline-block px-4 py-2 bg-[#3b82f6] text-white rounded-lg font-semibold group-hover:bg-[#2563eb] transition">
+                                    View Mockup →
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <h3 class="text-2xl font-bold mb-3" style="font-family: 'Inter', sans-serif;">Creator Social Hub</h3>
+                    <p class="text-gray-400 mb-4">Social networking platform for content creators with monetization and collaboration tools.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-xs px-3 py-1 bg-[#3b82f6]/10 border border-[#3b82f6]/30 text-[#3b82f6]">Svelte</span>
+                        <span class="text-xs px-3 py-1 bg-[#3b82f6]/10 border border-[#3b82f6]/30 text-[#3b82f6]">Node.js</span>
+                        <span class="text-xs px-3 py-1 bg-[#3b82f6]/10 border border-[#3b82f6]/30 text-[#3b82f6]">WebSocket</span>
+                    </div>
+                </div> -->
+
+                <!-- Portfolio Item 8 -->
+                <!-- <div class="portfolio-card tech-border p-6">
+                    <a href="portfolio-booking-system.html" class="block">
+                        <div class="aspect-video bg-gradient-to-br from-rose-900 via-pink-900 to-rose-900 mb-6 flex flex-col items-center justify-center border border-[#3b82f6]/20 rounded-lg overflow-hidden relative group">
+                            <div class="absolute inset-0 bg-black/40"></div>
+                            <div class="relative z-10 text-center p-8">
+                                <div class="text-4xl font-bold mb-4 text-[#3b82f6]">BOOKING</div>
+                                <div class="text-xl font-bold mb-2">Smart Booking System</div>
+                                <div class="text-sm text-gray-400 mb-4">Calendar sync & automated reminders</div>
+                                <div class="inline-block px-4 py-2 bg-[#3b82f6] text-white rounded-lg font-semibold group-hover:bg-[#2563eb] transition">
+                                    View Mockup →
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <h3 class="text-2xl font-bold mb-3" style="font-family: 'Inter', sans-serif;">Smart Booking System</h3>
+                    <p class="text-gray-400 mb-4">Intelligent appointment scheduling platform with calendar sync and automated reminders.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-xs px-3 py-1 bg-[#3b82f6]/10 border border-[#3b82f6]/30 text-[#3b82f6]">React</span>
+                        <span class="text-xs px-3 py-1 bg-[#3b82f6]/10 border border-[#3b82f6]/30 text-[#3b82f6]">Java</span>
+                        <span class="text-xs px-3 py-1 bg-[#3b82f6]/10 border border-[#3b82f6]/30 text-[#3b82f6]">MySQL</span>
+                    </div>
+                </div> -->
+
+                <!-- Portfolio Item 9 -->
+                <!-- <div class="portfolio-card tech-border p-6">
+                    <a href="portfolio-iot-dashboard.html" class="block">
+                        <div class="aspect-video bg-gradient-to-br from-violet-900 via-fuchsia-900 to-violet-900 mb-6 flex flex-col items-center justify-center border border-[#3b82f6]/20 rounded-lg overflow-hidden relative group">
+                            <div class="absolute inset-0 bg-black/40"></div>
+                            <div class="relative z-10 text-center p-8">
+                                <div class="text-4xl font-bold mb-4 text-[#3b82f6]">IOT</div>
+                                <div class="text-xl font-bold mb-2">IoT Device Manager</div>
+                                <div class="text-sm text-gray-400 mb-4">Real-time data visualization & alerts</div>
+                                <div class="inline-block px-4 py-2 bg-[#3b82f6] text-white rounded-lg font-semibold group-hover:bg-[#2563eb] transition">
+                                    View Mockup →
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <h3 class="text-2xl font-bold mb-3" style="font-family: 'Inter', sans-serif;">IoT Device Manager</h3>
+                    <p class="text-gray-400 mb-4">Central hub for managing IoT devices with real-time data visualization and alerts.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-xs px-3 py-1 bg-[#3b82f6]/10 border border-[#3b82f6]/30 text-[#3b82f6]">Angular</span>
+                        <span class="text-xs px-3 py-1 bg-[#3b82f6]/10 border border-[#3b82f6]/30 text-[#3b82f6]">Python</span>
+                        <span class="text-xs px-3 py-1 bg-[#3b82f6]/10 border border-[#3b82f6]/30 text-[#3b82f6]">MQTT</span>
+                    </div>
+                </div> -->
+
+                <!-- Portfolio Item 10 -->
+                <!-- <div class="portfolio-card tech-border p-6">
+                    <a href="portfolio-delivery-app.html" class="block">
+                        <div class="aspect-video bg-gradient-to-br from-lime-900 via-green-900 to-lime-900 mb-6 flex flex-col items-center justify-center border border-[#3b82f6]/20 rounded-lg overflow-hidden relative group">
+                            <div class="absolute inset-0 bg-black/40"></div>
+                            <div class="relative z-10 text-center p-8">
+                                <div class="text-4xl font-bold mb-4 text-[#3b82f6]">LOGISTICS</div>
+                                <div class="text-xl font-bold mb-2">Delivery Fleet Manager</div>
+                                <div class="text-sm text-gray-400 mb-4">Route optimization & driver tracking</div>
+                                <div class="inline-block px-4 py-2 bg-[#3b82f6] text-white rounded-lg font-semibold group-hover:bg-[#2563eb] transition">
+                                    View Mockup →
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <h3 class="text-2xl font-bold mb-3" style="font-family: 'Inter', sans-serif;">Delivery Fleet Manager</h3>
+                    <p class="text-gray-400 mb-4">Logistics platform with route optimization, driver tracking, and delivery analytics.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-xs px-3 py-1 bg-[#3b82f6]/10 border border-[#3b82f6]/30 text-[#3b82f6]">Kotlin</span>
+                        <span class="text-xs px-3 py-1 bg-[#3b82f6]/10 border border-[#3b82f6]/30 text-[#3b82f6]">Node.js</span>
+                        <span class="text-xs px-3 py-1 bg-[#3b82f6]/10 border border-[#3b82f6]/30 text-[#3b82f6]">Maps API</span>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section id="process" class="py-24 px-6 bg-black/30">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 glow-text" style="font-family: 'Inter', sans-serif;">
+                    OUR <span class="text-[#3b82f6]">PROCESS</span>
+                </h2>
+                <p class="text-gray-400 text-lg">From concept to deployment 30 days</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="tech-border p-6 text-center pulse-border">
+                    <div class="text-5xl font-bold text-[#3b82f6] mb-4" style="font-family: 'Inter', sans-serif;">01</div>
+                    <h3 class="text-xl font-bold mb-3" style="font-family: 'Inter', sans-serif;">DISCOVERY</h3>
+                    <p class="text-gray-400 text-sm">Deep dive into your vision, requirements, and target audience.</p>
+                </div>
+
+                <div class="tech-border p-6 text-center pulse-border" style="animation-delay: 0.3s;">
+                    <div class="text-5xl font-bold text-[#3b82f6] mb-4" style="font-family: 'Inter', sans-serif;">02</div>
+                    <h3 class="text-xl font-bold mb-3" style="font-family: 'Inter', sans-serif;">DESIGN & DEVELOP</h3>
+                    <p class="text-gray-400 text-sm">Rapid prototyping, UI/UX design, and agile development with daily progress updates.</p>
+                </div>
+
+                <div class="tech-border p-6 text-center pulse-border" style="animation-delay: 0.6s;">
+                    <div class="text-5xl font-bold text-[#3b82f6] mb-4" style="font-family: 'Inter', sans-serif;">03</div>
+                    <h3 class="text-xl font-bold mb-3" style="font-family: 'Inter', sans-serif;">LAUNCH & GROW</h3>
+                    <p class="text-gray-400 text-sm">Deploy your MVP with full documentation, support, and growth strategies.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="py-24 px-6">
+        <div class="max-w-4xl mx-auto">
+            <div class="tech-border p-12 text-center glow-box">
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 glow-text" style="font-family: 'Inter', sans-serif;">
+                    SIMPLE <span class="text-[#3b82f6]">PRICING</span>
+                </h2>
+                <div class="text-7xl font-black text-[#3b82f6] glow-text mb-6" style="font-family: 'Inter', sans-serif;">
+                    $2,500
+                </div>
+                <p class="text-xl text-gray-400 mb-8">
+                    One flat rate. No hidden fees. No surprises.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 text-left">
+                    <div>
+                        <div class="text-[#3b82f6] font-bold mb-2">✓ WHAT'S INCLUDED</div>
+                        <ul class="text-sm text-gray-400 space-y-1">
+                            <li>• Modern Tech Stack (Nextjs, React, etc)</li>
+                            <li>• Authentication</li>
+                            <li>• Payment Integration</li>
+                            <li>• Responsive Design</li>
+                            <li>• Database and API Setup</li>
+                            <li>• Testing</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <div class="text-[#3b82f6] font-bold mb-2">✓ DELIVERY</div>
+                        <ul class="text-sm text-gray-400 space-y-1">
+                            <li>• 30-day turnaround</li>
+                            <li>• Daily updates</li>
+                            <li>• Unlimited revisions</li>
+                            <li>• Source code handoff</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <div class="text-[#3b82f6] font-bold mb-2">✓ SUPPORT</div>
+                        <ul class="text-sm text-gray-400 space-y-1">
+                            <li>• Technical documentation</li>
+                            <li>• Deployment guide</li>
+                            <li>• 30-day bug fixes</li>
+                            <li>• Email support</li>
+                        </ul>
+                    </div>
+                </div>
+                <button class="btn-primary" onclick="openContactPanel(event)" style="font-size: clamp(10px, 2.5vw, 14px); padding: clamp(10px, 3vw, 16px) clamp(20px, 6vw, 48px);">
+                    GET STARTED NOW
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="py-24 px-6 bg-black/30">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 glow-text" style="font-family: 'Inter', sans-serif;">
+                    LATEST <span class="text-[#3b82f6]">INSIGHTS</span>
+                </h2>
+                <p class="text-gray-400 text-lg">Learn about MVP development, startup strategies, and tech trends</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                <!-- Blog Post 1 -->
+                <a href="blog.html?post=product_prioritization" class="tech-border p-6 hover:border-[#3b82f6]/60 transition-all group">
+                    <div class="text-sm text-[#3b82f6] mb-3 font-semibold">PRODUCT STRATEGY</div>
+                    <h3 class="text-xl font-bold mb-3 group-hover:text-[#3b82f6] transition" style="font-family: 'Inter', sans-serif;">
+                        How to Prioritize Product Features
+                    </h3>
+                    <p class="text-gray-400 text-sm mb-4">
+                        A practical framework for deciding what to build next when everything feels important.
+                    </p>
+                    <div class="flex items-center justify-between text-xs text-gray-500">
+                        <span>7 min read</span>
+                        <span>Jan 20, 2025</span>
+                    </div>
+                </a>
+
+                <!-- Blog Post 2 -->
+                <a href="blog.html?post=mvp_mistakes" class="tech-border p-6 hover:border-[#3b82f6]/60 transition-all group">
+                    <div class="text-sm text-[#3b82f6] mb-3 font-semibold">BEST PRACTICES</div>
+                    <h3 class="text-xl font-bold mb-3 group-hover:text-[#3b82f6] transition" style="font-family: 'Inter', sans-serif;">
+                        5 MVP Mistakes That Waste Months
+                    </h3>
+                    <p class="text-gray-400 text-sm mb-4">
+                        Avoid these costly mistakes that add months to your timeline without improving success.
+                    </p>
+                    <div class="flex items-center justify-between text-xs text-gray-500">
+                        <span>6 min read</span>
+                        <span>Jan 18, 2025</span>
+                    </div>
+                </a>
+
+                <!-- Blog Post 3 -->
+                <a href="blog.html?post=technical_debt" class="tech-border p-6 hover:border-[#3b82f6]/60 transition-all group">
+                    <div class="text-sm text-[#3b82f6] mb-3 font-semibold">ENGINEERING</div>
+                    <h3 class="text-xl font-bold mb-3 group-hover:text-[#3b82f6] transition" style="font-family: 'Inter', sans-serif;">
+                        Managing Technical Debt Strategically
+                    </h3>
+                    <p class="text-gray-400 text-sm mb-4">
+                        Balance speed with sustainability without crippling your ability to ship features.
+                    </p>
+                    <div class="flex items-center justify-between text-xs text-gray-500">
+                        <span>8 min read</span>
+                        <span>Jan 15, 2025</span>
+                    </div>
+                </a>
+            </div>
+
+            <div class="text-center">
+                <a href="blog.html" class="inline-block px-8 py-3 border border-[#3b82f6]/50 hover:border-[#3b82f6] hover:bg-[#3b82f6]/10 transition font-semibold" style="border-radius: 6px;">
+                    VIEW ALL ARTICLES →
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="py-24 px-6">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 glow-text" style="font-family: 'Inter', sans-serif;">
+                LET'S BUILD <span class="text-[#3b82f6]">TOGETHER</span>
+            </h2>
+            <p class="text-xl text-gray-400 mb-12">
+                Ready to transform your idea into a working product? Get in touch.
+            </p>
+
+            <button class="btn-primary" onclick="openContactPanel(event)" style="font-size: clamp(10px, 2.5vw, 14px); padding: clamp(10px, 3vw, 16px) clamp(20px, 6vw, 48px);">
+                GET IN TOUCH
+            </button>
+
+            <p class="mt-8 text-gray-500 text-sm">Response time: &lt; 24 hours</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-6 px-6 border-t border-[#3b82f6]/20">
+        <div class="max-w-7xl mx-auto text-center">
+            <div class="flex items-center justify-center gap-3 mb-2">
+                <img src="images/logo.svg" width="32" height="32" alt="ShipMVP Logo" />
+                <div class="text-xl font-bold glow-text" style="font-family: 'Inter', sans-serif;">
+                    Ship<span class="text-[#3b82f6]">MVP</span>
+                </div>
+            </div>
+            <p class="text-gray-500 text-sm">
+                © 2025 ShipMVP. Build fast. Ship faster.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Contact Overlay -->
+    <div class="contact-overlay" id="contactOverlay" onclick="closeContactPanel()"></div>
+
+    <!-- Contact Panel -->
+    <div class="contact-panel" id="contactPanel">
+        <div class="p-8">
+            <div class="flex items-center justify-between mb-8">
+                <h2 class="text-3xl font-bold glow-text">
+                    LET'S BUILD <span class="text-[#3b82f6]">TOGETHER</span>
+                </h2>
+                <button onclick="closeContactPanel()" class="text-gray-400 hover:text-white transition text-4xl leading-none">&times;</button>
+            </div>
+
+            <p class="text-gray-400 mb-8">
+                Tell us about your project and we'll get back to you within 24 hours.
+            </p>
+
+            <form id="contactForm" class="space-y-6">
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-semibold mb-2 text-gray-300">First Name *</label>
+                        <input type="text" name="firstName" required class="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg focus:border-[#3b82f6] focus:outline-none transition text-white" placeholder="John" />
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold mb-2 text-gray-300">Last Name *</label>
+                        <input type="text" name="lastName" required class="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg focus:border-[#3b82f6] focus:outline-none transition text-white" placeholder="Doe" />
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold mb-2 text-gray-300">Email Address *</label>
+                    <input type="email" name="email" required class="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg focus:border-[#3b82f6] focus:outline-none transition text-white" placeholder="john@company.com" />
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold mb-2 text-gray-300">Company</label>
+                    <input type="text" name="company" class="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg focus:border-[#3b82f6] focus:outline-none transition text-white" placeholder="Your Company Name" />
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold mb-2 text-gray-300">Project Type *</label>
+                    <select name="projectType" required class="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg focus:border-[#3b82f6] focus:outline-none transition text-white">
+                        <option value="">Select a project type</option>
+                        <option value="web-app">Web Application</option>
+                        <option value="mobile-app">Mobile App</option>
+                        <option value="ai-ml">AI/ML Solution</option>
+                        <option value="ecommerce">E-commerce</option>
+                        <option value="saas">SaaS Platform</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold mb-2 text-gray-300">Project Description *</label>
+                    <textarea name="description" required rows="5" class="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg focus:border-[#3b82f6] focus:outline-none transition text-white resize-none" placeholder="Tell us about your project idea, goals, and any specific requirements..."></textarea>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold mb-2 text-gray-300">Timeline</label>
+                    <select name="timeline" class="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg focus:border-[#3b82f6] focus:outline-none transition text-white">
+                        <option value="">When do you need this?</option>
+                        <option value="asap">ASAP (30 days)</option>
+                        <option value="1month">Within 1 month</option>
+                        <option value="3months">Within 3 months</option>
+                        <option value="flexible">Flexible</option>
+                    </select>
+                </div>
+
+                <div>
+                    <button type="submit" class="w-full btn-primary" style="font-size: clamp(10px, 2.5vw, 14px); padding: clamp(10px, 3vw, 16px) clamp(20px, 6vw, 48px);">
+                        SEND MESSAGE
+                    </button>
+                </div>
+
+                <div id="formMessage" class="hidden p-4 rounded-lg text-center font-semibold"></div>
+            </form>
+
+            <div class="mt-8 text-center text-gray-500 text-sm">
+                <p>Response time: &lt; 24 hours</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // IMPORTANT: Replace 'YOUR_GOOGLE_SCRIPT_URL' with your actual Google Apps Script Web App URL
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxsUmEeUl2L_h3wjG-9OefkglcFy7qUNVG45c_stkHxF1SSzIeAu6bCDhYzHejNQ0kBdA/exec';
+
+        function openContactPanel(event) {
+            event.preventDefault();
+            document.getElementById('contactPanel').classList.add('active');
+            document.getElementById('contactOverlay').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeContactPanel() {
+            document.getElementById('contactPanel').classList.remove('active');
+            document.getElementById('contactOverlay').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        document.getElementById('contactForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+
+            const messageDiv = document.getElementById('formMessage');
+            const submitBtn = this.querySelector('button[type="submit"]');
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'SENDING...';
+
+            try {
+                // Send data to Google Sheets
+                const response = await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        firstName: data.firstName,
+                        lastName: data.lastName,
+                        email: data.email,
+                        company: data.company || 'N/A',
+                        projectType: data.projectType,
+                        timeline: data.timeline || 'N/A',
+                        description: data.description,
+                        timestamp: new Date().toISOString()
+                    })
+                });
+
+                // Show success message
+                messageDiv.className = 'p-4 rounded-lg text-center font-semibold bg-green-500/20 text-green-400 border border-green-500/30';
+                messageDiv.textContent = 'Message sent successfully! We\'ll get back to you within 24 hours.';
+                messageDiv.classList.remove('hidden');
+
+                // Reset form
+                this.reset();
+
+                // Auto-hide message after 5 seconds
+                setTimeout(() => {
+                    messageDiv.classList.add('hidden');
+                }, 5000);
+
+            } catch (error) {
+                console.error('Google Sheets Error:', error);
+                messageDiv.className = 'p-4 rounded-lg text-center font-semibold bg-red-500/20 text-red-400 border border-red-500/30';
+                messageDiv.textContent = 'Failed to send message. Please try again later.';
+                messageDiv.classList.remove('hidden');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'SEND MESSAGE';
+            }
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeContactPanel();
+                closeMobileMenu();
+            }
+        });
+
+        // Mobile menu functions
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileOverlay = document.getElementById('mobileOverlay');
+
+            if (mobileMenu.classList.contains('active')) {
+                closeMobileMenu();
+            } else {
+                mobileMenu.classList.add('active');
+                mobileOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeMobileMenu() {
+            document.getElementById('mobileMenu').classList.remove('active');
+            document.getElementById('mobileOverlay').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Initialize mobile menu link listeners when DOM is ready
+        window.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('#mobileMenu a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    // Don't prevent default for regular links
+                    closeMobileMenu();
+                });
+            });
+        });
+    </script>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="contact-overlay" id="mobileOverlay" onclick="closeMobileMenu()"></div>
+
+    <!-- Mobile Menu Panel -->
+    <div class="contact-panel md:hidden" id="mobileMenu">
+        <div class="p-8">
+            <div class="flex items-center justify-between mb-8">
+                <h2 class="text-2xl font-bold glow-text" style="font-family: 'Inter', sans-serif;">
+                    Ship<span class="text-[#3b82f6]">MVP</span>
+                </h2>
+                <button onclick="closeMobileMenu()" class="text-gray-400 hover:text-white transition text-4xl leading-none">&times;</button>
+            </div>
+
+            <nav class="flex flex-col gap-6">
+                <a href="#portfolio" class="text-2xl hover:text-[#3b82f6] transition-colors">Portfolio</a>
+                <a href="#process" class="text-2xl hover:text-[#3b82f6] transition-colors">Process</a>
+                <a href="blog.html" class="text-2xl hover:text-[#3b82f6] transition-colors">Blog</a>
+                <a href="#" onclick="openContactPanel(event)" class="text-2xl hover:text-[#3b82f6] transition-colors">Contact</a>
+            </nav>
+        </div>
+    </div>
+</body>
+</html>

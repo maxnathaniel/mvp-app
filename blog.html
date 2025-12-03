@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - ShipMVP</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #1a1a2e;
+            color: #e8e8f0;
+            overflow-x: hidden;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .grid-bg {
+            background-image:
+                linear-gradient(rgba(59, 130, 246, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(59, 130, 246, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            background-position: center center;
+        }
+
+        .glow-text {
+            text-shadow: 0 0 20px rgba(59, 130, 246, 0.5),
+                         0 0 40px rgba(59, 130, 246, 0.3);
+        }
+
+        .tech-border {
+            position: relative;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            clip-path: polygon(
+                0 8px, 8px 0, calc(100% - 8px) 0, 100% 8px,
+                100% calc(100% - 8px), calc(100% - 8px) 100%,
+                8px 100%, 0 calc(100% - 8px)
+            );
+        }
+
+        nav {
+            backdrop-filter: blur(10px);
+            background: rgba(26, 26, 46, 0.9);
+            border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .blog-card {
+            background: linear-gradient(135deg, rgba(30, 30, 50, 0.6), rgba(35, 35, 55, 0.6));
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .blog-card:hover {
+            border-color: rgba(59, 130, 246, 0.6);
+            transform: translateY(-4px);
+        }
+
+        /* Markdown Content Styles */
+        .markdown-content {
+            line-height: 1.8;
+        }
+
+        .markdown-content h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            color: #3b82f6;
+        }
+
+        .markdown-content h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: #e8e8f0;
+        }
+
+        .markdown-content h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: #e8e8f0;
+        }
+
+        .markdown-content p {
+            margin-bottom: 1.25rem;
+            color: #c8c8d8;
+        }
+
+        .markdown-content ul, .markdown-content ol {
+            margin-bottom: 1.25rem;
+            padding-left: 2rem;
+            color: #c8c8d8;
+        }
+
+        .markdown-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        .markdown-content a {
+            color: #3b82f6;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(59, 130, 246, 0.3);
+            transition: all 0.2s;
+        }
+
+        .markdown-content a:hover {
+            border-bottom-color: #3b82f6;
+        }
+
+        .markdown-content code {
+            background: rgba(59, 130, 246, 0.1);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            color: #3b82f6;
+        }
+
+        .markdown-content pre {
+            background: rgba(20, 20, 35, 0.8);
+            padding: 1.5rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin-bottom: 1.25rem;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .markdown-content pre code {
+            background: transparent;
+            padding: 0;
+            color: #e0e0e0;
+        }
+
+        .markdown-content blockquote {
+            border-left: 4px solid #3b82f6;
+            padding-left: 1.5rem;
+            margin-bottom: 1.25rem;
+            color: #b8b8d0;
+            font-style: italic;
+        }
+
+        .markdown-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+
+        .markdown-content hr {
+            border: none;
+            border-top: 1px solid rgba(59, 130, 246, 0.2);
+            margin: 2rem 0;
+        }
+
+        .contact-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 99;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+
+        .contact-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .contact-panel {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            max-width: 600px;
+            height: 100vh;
+            background: rgba(26, 26, 46, 0.98);
+            backdrop-filter: blur(20px);
+            border-left: 1px solid rgba(59, 130, 246, 0.3);
+            z-index: 100;
+            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow-y: auto;
+        }
+
+        .contact-panel.active {
+            right: 0;
+        }
+    </style>
+</head>
+<body class="grid-bg">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a href="index.html" class="flex items-center gap-2 sm:gap-3">
+                    <img src="images/logo.svg" width="36" height="36" class="sm:w-12 sm:h-12" alt="ShipMVP Logo" />
+                    <div class="text-lg sm:text-2xl font-bold glow-text" style="font-family: 'Inter', sans-serif;">
+                        Ship<span class="text-[#3b82f6]">MVP</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="index.html#portfolio" class="hover:text-[#3b82f6] transition-colors">Portfolio</a>
+                    <a href="index.html#process" class="hover:text-[#3b82f6] transition-colors">Process</a>
+                    <a href="blog.html" class="text-[#3b82f6]">Blog</a>
+                    <a href="index.html#contact" class="hover:text-[#3b82f6] transition-colors">Contact</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button onclick="toggleMobileMenu()" class="md:hidden text-white hover:text-[#3b82f6] transition-colors">
+                    <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="pt-32 pb-24 px-6">
+        <div class="max-w-4xl mx-auto">
+            <!-- Blog List View -->
+            <div id="blogList">
+                <div class="text-center mb-16">
+                    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 glow-text" style="font-family: 'Inter', sans-serif;">
+                        THE <span class="text-[#3b82f6]">BLOG</span>
+                    </h1>
+                    <p class="text-gray-400 text-base sm:text-lg">Insights on MVP development, startups, and technology</p>
+                </div>
+
+                <div class="space-y-8">
+                    <!-- Product Prioritization -->
+                    <a href="blog.html?post=product_prioritization" class="blog-card tech-border p-8 block group">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="text-sm text-[#3b82f6] font-semibold">PRODUCT STRATEGY</div>
+                            <div class="text-sm text-gray-500">Dec 2, 2025</div>
+                        </div>
+                        <h2 class="text-3xl font-bold mb-4 group-hover:text-[#3b82f6] transition" style="font-family: 'Inter', sans-serif;">
+                            How to Prioritize Product Features When Everything Feels Important
+                        </h2>
+                        <p class="text-gray-400 mb-4">
+                            Every product manager faces the same problem: a backlog full of "critical" features and not enough time to build them all. Here's a practical framework using RICE scoring to decide what to build next.
+                        </p>
+                        <div class="flex items-center gap-4 text-sm text-gray-500">
+                            <span>7 min read</span>
+                            <span>•</span>
+                            <span>Prioritization</span>
+                        </div>
+                    </a>
+
+                    <!-- MVP Mistakes -->
+                    <a href="blog.html?post=mvp_mistakes" class="blog-card tech-border p-8 block group">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="text-sm text-[#3b82f6] font-semibold">BEST PRACTICES</div>
+                            <div class="text-sm text-gray-500">Dec 1, 2025</div>
+                        </div>
+                        <h2 class="text-3xl font-bold mb-4 group-hover:text-[#3b82f6] transition" style="font-family: 'Inter', sans-serif;">
+                            5 MVP Mistakes That Waste Months of Development Time
+                        </h2>
+                        <p class="text-gray-400 mb-4">
+                            Building your first MVP? Most founders make the same costly mistakes that add months to their timeline without improving their chances of success. Here's what to avoid.
+                        </p>
+                        <div class="flex items-center gap-4 text-sm text-gray-500">
+                            <span>6 min read</span>
+                            <span>•</span>
+                            <span>Common Mistakes</span>
+                        </div>
+                    </a>
+
+                    <!-- Technical Debt -->
+                    <a href="blog.html?post=technical_debt" class="blog-card tech-border p-8 block group">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="text-sm text-[#3b82f6] font-semibold">ENGINEERING</div>
+                            <div class="text-sm text-gray-500">Nov 30, 2025</div>
+                        </div>
+                        <h2 class="text-3xl font-bold mb-4 group-hover:text-[#3b82f6] transition" style="font-family: 'Inter', sans-serif;">
+                            Managing Technical Debt Without Slowing Down Development
+                        </h2>
+                        <p class="text-gray-400 mb-4">
+                            Technical debt is inevitable. The key isn't avoiding it—it's managing it strategically so it doesn't cripple your ability to ship. Here's how to balance speed with sustainability.
+                        </p>
+                        <div class="flex items-center gap-4 text-sm text-gray-500">
+                            <span>8 min read</span>
+                            <span>•</span>
+                            <span>Code Quality</span>
+                        </div>
+                    </a>
+
+                    <!-- Airbnb Case Study -->
+                    <a href="blog.html?post=case_study_airbnb" class="blog-card tech-border p-8 block group">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="text-sm text-[#3b82f6] font-semibold">CASE STUDY</div>
+                            <div class="text-sm text-gray-500">Nov 12, 2025</div>
+                        </div>
+                        <h2 class="text-3xl font-bold mb-4 group-hover:text-[#3b82f6] transition" style="font-family: 'Inter', sans-serif;">
+                            How Airbnb's MVP Started With Just 3 Airbeds
+                        </h2>
+                        <p class="text-gray-400 mb-4">
+                            Learn how Airbnb went from renting air mattresses in their apartment to a $100B company, and what their MVP journey teaches us about validation.
+                        </p>
+                        <div class="flex items-center gap-4 text-sm text-gray-500">
+                            <span>10 min read</span>
+                            <span>•</span>
+                            <span>Success Stories</span>
+                        </div>
+                    </a>
+
+                    <!-- Dropbox Case Study -->
+                    <a href="blog.html?post=case_study_dropbox" class="blog-card tech-border p-8 block group">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="text-sm text-[#3b82f6] font-semibold">CASE STUDY</div>
+                            <div class="text-sm text-gray-500">Nov 10, 2025</div>
+                        </div>
+                        <h2 class="text-3xl font-bold mb-4 group-hover:text-[#3b82f6] transition" style="font-family: 'Inter', sans-serif;">
+                            Dropbox's MVP: A 3-Minute Video That Changed Everything
+                        </h2>
+                        <p class="text-gray-400 mb-4">
+                            Before building their product, Dropbox created a simple video demonstrating the concept. It generated 75,000 signups overnight. Here's the full story.
+                        </p>
+                        <div class="flex items-center gap-4 text-sm text-gray-500">
+                            <span>9 min read</span>
+                            <span>•</span>
+                            <span>Validation</span>
+                        </div>
+                    </a>
+
+                    <!-- Buffer Case Study -->
+                    <a href="blog.html?post=case_study_buffer" class="blog-card tech-border p-8 block group">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="text-sm text-[#3b82f6] font-semibold">CASE STUDY</div>
+                            <div class="text-sm text-gray-500">Oct 8, 2025</div>
+                        </div>
+                        <h2 class="text-3xl font-bold mb-4 group-hover:text-[#3b82f6] transition" style="font-family: 'Inter', sans-serif;">
+                            Buffer's Landing Page MVP: Validated Before Writing Code
+                        </h2>
+                        <p class="text-gray-400 mb-4">
+                            Joel Gascoigne validated Buffer's idea with two landing pages before building anything. Learn how this simple approach saved months of development.
+                        </p>
+                        <div class="flex items-center gap-4 text-sm text-gray-500">
+                            <span>7 min read</span>
+                            <span>•</span>
+                            <span>Lean Startup</span>
+                        </div>
+                    </a>
+
+                    <!-- Zappos Case Study -->
+                    <a href="blog.html?post=case_study_zappos" class="blog-card tech-border p-8 block group">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="text-sm text-[#3b82f6] font-semibold">CASE STUDY</div>
+                            <div class="text-sm text-gray-500">Sept 6, 2025</div>
+                        </div>
+                        <h2 class="text-3xl font-bold mb-4 group-hover:text-[#3b82f6] transition" style="font-family: 'Inter', sans-serif;">
+                            Zappos Started By Photographing Shoes at Local Stores
+                        </h2>
+                        <p class="text-gray-400 mb-4">
+                            Nick Swinmurn didn't build inventory systems or warehouses first. He tested if people would buy shoes online by manually fulfilling orders. Here's the story.
+                        </p>
+                        <div class="flex items-center gap-4 text-sm text-gray-500">
+                            <span>8 min read</span>
+                            <span>•</span>
+                            <span>Manual MVP</span>
+                        </div>
+                    </a>
+
+                    <!-- Groupon Case Study -->
+                    <a href="blog.html?post=case_study_groupon" class="blog-card tech-border p-8 block group">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="text-sm text-[#3b82f6] font-semibold">CASE STUDY</div>
+                            <div class="text-sm text-gray-500">Jun 30, 2025</div>
+                        </div>
+                        <h2 class="text-3xl font-bold mb-4 group-hover:text-[#3b82f6] transition" style="font-family: 'Inter', sans-serif;">
+                            How Groupon's WordPress Blog Became a Billion-Dollar Company
+                        </h2>
+                        <p class="text-gray-400 mb-4">
+                            Groupon started as a simple WordPress blog posting daily deals via PDFs. No complex platform, no automated systems. Just a blog that proved the concept worked.
+                        </p>
+                        <div class="flex items-center gap-4 text-sm text-gray-500">
+                            <span>7 min read</span>
+                            <span>•</span>
+                            <span>Simplicity</span>
+                        </div>
+                    </a>
+
+                    <!-- Mint Case Study -->
+                    <a href="blog.html?post=case_study_mint" class="blog-card tech-border p-8 block group">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="text-sm text-[#3b82f6] font-semibold">CASE STUDY</div>
+                            <div class="text-sm text-gray-500">May 20, 2025</div>
+                        </div>
+                        <h2 class="text-3xl font-bold mb-4 group-hover:text-[#3b82f6] transition" style="font-family: 'Inter', sans-serif;">
+                            Mint.com Built an Audience Before Building the Product
+                        </h2>
+                        <p class="text-gray-400 mb-4">
+                            Aaron Patzer spent a year building buzz through content marketing and SEO before launching Mint. The result: 20,000 users on day one.
+                        </p>
+                        <div class="flex items-center gap-4 text-sm text-gray-500">
+                            <span>9 min read</span>
+                            <span>•</span>
+                            <span>Pre-Launch</span>
+                        </div>
+                    </a>
+
+                    <!-- Product Hunt Case Study -->
+                    <a href="blog.html?post=case_study_producthunt" class="blog-card tech-border p-8 block group">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="text-sm text-[#3b82f6] font-semibold">CASE STUDY</div>
+                            <div class="text-sm text-gray-500">Apr 30, 2025</div>
+                        </div>
+                        <h2 class="text-3xl font-bold mb-4 group-hover:text-[#3b82f6] transition" style="font-family: 'Inter', sans-serif;">
+                            Product Hunt Started as an Email List
+                        </h2>
+                        <p class="text-gray-400 mb-4">
+                            Ryan Hoover built Product Hunt as a simple email list using LinkydInk. No website, no complex features. Just curated links sent to interested people.
+                        </p>
+                        <div class="flex items-center gap-4 text-sm text-gray-500">
+                            <span>6 min read</span>
+                            <span>•</span>
+                            <span>Community</span>
+                        </div>
+                    </a>
+
+                    <!-- AngelList Case Study -->
+                    <a href="blog.html?post=case_study_angellist" class="blog-card tech-border p-8 block group">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="text-sm text-[#3b82f6] font-semibold">CASE STUDY</div>
+                            <div class="text-sm text-gray-500">Mar 28, 2025</div>
+                        </div>
+                        <h2 class="text-3xl font-bold mb-4 group-hover:text-[#3b82f6] transition" style="font-family: 'Inter', sans-serif;">
+                            AngelList's MVP: Just Intro Emails Between Founders and Investors
+                        </h2>
+                        <p class="text-gray-400 mb-4">
+                            Naval Ravikant started AngelList by manually introducing startups to investors via email. No platform, no automation. Just valuable connections.
+                        </p>
+                        <div class="flex items-center gap-4 text-sm text-gray-500">
+                            <span>8 min read</span>
+                            <span>•</span>
+                            <span>Network Effects</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Single Blog Post View -->
+            <div id="blogPost" class="hidden">
+                <div class="mb-8">
+                    <a href="blog.html" class="text-[#3b82f6] hover:underline">← Back to all articles</a>
+                </div>
+
+                <article class="markdown-content" id="articleContent">
+                    <!-- Markdown content will be rendered here -->
+                </article>
+
+                <div class="mt-16 pt-8 border-t border-[#3b82f6]/20">
+                    <a href="blog.html" class="text-[#3b82f6] hover:underline">← Back to all articles</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-6 px-6 border-t border-[#3b82f6]/20">
+        <div class="max-w-7xl mx-auto text-center">
+            <div class="flex items-center justify-center gap-3 mb-2">
+                <img src="images/logo.svg" width="32" height="32" alt="ShipMVP Logo" />
+                <div class="text-xl font-bold glow-text" style="font-family: 'Inter', sans-serif;">
+                    Ship<span class="text-[#3b82f6]">MVP</span>
+                </div>
+            </div>
+            <p class="text-gray-500 text-sm">
+                © 2025 ShipMVP. Build fast. Ship faster.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Get the post parameter from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const postSlug = urlParams.get('post');
+
+        if (postSlug) {
+            // Show single post view
+            document.getElementById('blogList').classList.add('hidden');
+            document.getElementById('blogPost').classList.remove('hidden');
+
+            // Load the markdown file
+            loadMarkdownPost(postSlug);
+        }
+
+        async function loadMarkdownPost(slug) {
+            try {
+                const response = await fetch(`blog-posts/${slug}.md`);
+                if (!response.ok) {
+                    throw new Error('Post not found');
+                }
+
+                const markdown = await response.text();
+                const html = marked.parse(markdown);
+                document.getElementById('articleContent').innerHTML = html;
+
+                // Update page title
+                const firstH1 = document.querySelector('#articleContent h1');
+                if (firstH1) {
+                    document.title = firstH1.textContent + ' - ShipMVP Blog';
+                }
+            } catch (error) {
+                document.getElementById('articleContent').innerHTML = `
+                    <div class="text-center py-12">
+                        <h1 class="text-4xl font-bold mb-4">Post Not Found</h1>
+                        <p class="text-gray-400 mb-8">The blog post you're looking for doesn't exist yet.</p>
+                        <a href="blog.html" class="text-[#3b82f6] hover:underline">← Back to all articles</a>
+                    </div>
+                `;
+            }
+        }
+
+        // Mobile menu functions
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileOverlay = document.getElementById('mobileOverlay');
+
+            if (mobileMenu.classList.contains('active')) {
+                closeMobileMenu();
+            } else {
+                mobileMenu.classList.add('active');
+                mobileOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeMobileMenu() {
+            document.getElementById('mobileMenu').classList.remove('active');
+            document.getElementById('mobileOverlay').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Initialize mobile menu link listeners when DOM is ready
+        window.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('#mobileMenu a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    closeMobileMenu();
+                });
+            });
+        });
+
+        // Close mobile menu on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeMobileMenu();
+            }
+        });
+    </script>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="contact-overlay" id="mobileOverlay" onclick="closeMobileMenu()"></div>
+
+    <!-- Mobile Menu Panel -->
+    <div class="contact-panel md:hidden" id="mobileMenu">
+        <div class="p-8">
+            <div class="flex items-center justify-between mb-8">
+                <h2 class="text-2xl font-bold glow-text" style="font-family: 'Inter', sans-serif;">
+                    Ship<span class="text-[#3b82f6]">MVP</span>
+                </h2>
+                <button onclick="closeMobileMenu()" class="text-gray-400 hover:text-white transition text-4xl leading-none">&times;</button>
+            </div>
+
+            <nav class="flex flex-col gap-6">
+                <a href="index.html#portfolio" class="text-2xl hover:text-[#3b82f6] transition-colors">Portfolio</a>
+                <a href="index.html#process" class="text-2xl hover:text-[#3b82f6] transition-colors">Process</a>
+                <a href="blog.html" class="text-2xl text-[#3b82f6] transition-colors">Blog</a>
+                <a href="index.html#contact" class="text-2xl hover:text-[#3b82f6] transition-colors">Contact</a>
+            </nav>
+        </div>
+    </div>
+</body>
+</html>

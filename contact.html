@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - ShipMVP</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0a0a;
+            color: #e0e0e0;
+        }
+        
+        .grid-bg {
+            background-image: 
+                linear-gradient(rgba(59, 130, 246, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(59, 130, 246, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            background-position: center center;
+        }
+        
+        .glow-text {
+            text-shadow: 0 0 20px rgba(59, 130, 246, 0.5),
+                         0 0 40px rgba(59, 130, 246, 0.3);
+        }
+        
+        .tech-border {
+            position: relative;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            clip-path: polygon(
+                0 8px, 8px 0, calc(100% - 8px) 0, 100% 8px,
+                100% calc(100% - 8px), calc(100% - 8px) 100%,
+                8px 100%, 0 calc(100% - 8px)
+            );
+        }
+        
+        nav {
+            backdrop-filter: blur(10px);
+            background: rgba(10, 10, 10, 0.8);
+            border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+        }
+    </style>
+</head>
+<body class="grid-bg min-h-screen">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a href="index.html" class="text-2xl font-bold glow-text" style="font-family: 'Inter', sans-serif;">
+                    &lt;RAPID<span class="text-[#3b82f6]">MVP</span>/&gt;
+                </a>
+                <div class="flex items-center gap-8">
+                    <a href="index.html#portfolio" class="hover:text-[#3b82f6] transition-colors">Portfolio</a>
+                    <a href="index.html#process" class="hover:text-[#3b82f6] transition-colors">Process</a>
+                    <a href="index.html#tech" class="hover:text-[#3b82f6] transition-colors">Tech Stack</a>
+                    <a href="contact.html" class="hover:text-[#3b82f6] transition-colors">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contact Form Section -->
+    <section class="pt-32 pb-24 px-6">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-12">
+                <h1 class="text-5xl font-bold mb-4 glow-text">
+                    LET'S BUILD <span class="text-[#3b82f6]">TOGETHER</span>
+                </h1>
+                <p class="text-xl text-gray-400">
+                    Tell us about your project and we'll get back to you within 24 hours.
+                </p>
+            </div>
+
+            <div class="tech-border p-8 bg-black/30">
+                <form id="contactForm" class="space-y-6">
+                    <div class="grid grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-semibold mb-2 text-gray-300">First Name *</label>
+                            <input 
+                                type="text" 
+                                name="firstName"
+                                required
+                                class="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg focus:border-[#3b82f6] focus:outline-none transition text-white"
+                                placeholder="John"
+                            />
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold mb-2 text-gray-300">Last Name *</label>
+                            <input 
+                                type="text" 
+                                name="lastName"
+                                required
+                                class="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg focus:border-[#3b82f6] focus:outline-none transition text-white"
+                                placeholder="Doe"
+                            />
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold mb-2 text-gray-300">Email Address *</label>
+                        <input 
+                            type="email" 
+                            name="email"
+                            required
+                            class="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg focus:border-[#3b82f6] focus:outline-none transition text-white"
+                            placeholder="john@company.com"
+                        />
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold mb-2 text-gray-300">Company</label>
+                        <input 
+                            type="text" 
+                            name="company"
+                            class="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg focus:border-[#3b82f6] focus:outline-none transition text-white"
+                            placeholder="Your Company Name"
+                        />
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold mb-2 text-gray-300">Project Type *</label>
+                        <select 
+                            name="projectType"
+                            required
+                            class="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg focus:border-[#3b82f6] focus:outline-none transition text-white"
+                        >
+                            <option value="">Select a project type</option>
+                            <option value="web-app">Web Application</option>
+                            <option value="mobile-app">Mobile App</option>
+                            <option value="ai-ml">AI/ML Solution</option>
+                            <option value="ecommerce">E-commerce</option>
+                            <option value="saas">SaaS Platform</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold mb-2 text-gray-300">Project Description *</label>
+                        <textarea 
+                            name="description"
+                            required
+                            rows="6"
+                            class="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg focus:border-[#3b82f6] focus:outline-none transition text-white resize-none"
+                            placeholder="Tell us about your project idea, goals, and any specific requirements..."
+                        ></textarea>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold mb-2 text-gray-300">Timeline</label>
+                        <select 
+                            name="timeline"
+                            class="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg focus:border-[#3b82f6] focus:outline-none transition text-white"
+                        >
+                            <option value="">When do you need this?</option>
+                            <option value="asap">ASAP (2 weeks)</option>
+                            <option value="1month">Within 1 month</option>
+                            <option value="3months">Within 3 months</option>
+                            <option value="flexible">Flexible</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <button 
+                            type="submit"
+                            class="w-full py-4 bg-gradient-to-r from-[#3b82f6] to-[#2563eb] text-white rounded-lg font-bold text-lg hover:shadow-xl transition clip-path-btn"
+                            style="clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);"
+                        >
+                            SEND MESSAGE
+                        </button>
+                    </div>
+
+                    <div id="formMessage" class="hidden p-4 rounded-lg text-center font-semibold"></div>
+                </form>
+            </div>
+
+            <div class="mt-12 text-center text-gray-500 text-sm">
+                <p>Response time: &lt; 24 hours</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-6 border-t border-[#3b82f6]/20">
+        <div class="max-w-7xl mx-auto text-center">
+            <div class="text-2xl font-bold mb-4 glow-text" style="font-family: 'Inter', sans-serif;">
+                &lt;Ship<span class="text-[#3b82f6]">MVP</span>/&gt;
+            </div>
+            <p class="text-gray-500 text-sm">
+                © 2025 ShipMVP. Build fast. Launch faster.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            const messageDiv = document.getElementById('formMessage');
+            const submitBtn = this.querySelector('button[type="submit"]');
+            
+            // Show loading state
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'SENDING...';
+            
+            try {
+                // Create mailto link with form data
+                const subject = encodeURIComponent(`New MVP Project Inquiry from ${data.firstName} ${data.lastName}`);
+                const body = encodeURIComponent(`
+Name: ${data.firstName} ${data.lastName}
+Email: ${data.email}
+Company: ${data.company || 'N/A'}
+Project Type: ${data.projectType}
+Budget: ${data.budget || 'N/A'}
+Timeline: ${data.timeline || 'N/A'}
+
+Project Description:
+${data.description}
+                `);
+                
+                // Open mailto
+                window.location.href = `mailto:hello@rapidmvp.dev?subject=${subject}&body=${body}`;
+                
+                // Show success message
+                messageDiv.className = 'p-4 rounded-lg text-center font-semibold bg-blue-500/20 text-blue-400 border border-blue-500/30';
+                messageDiv.textContent = 'Your email client should open shortly. If not, please email us directly at hello@rapidmvp.dev';
+                messageDiv.classList.remove('hidden');
+                
+                // Reset form
+                this.reset();
+                
+            } catch (error) {
+                messageDiv.className = 'p-4 rounded-lg text-center font-semibold bg-red-500/20 text-red-400 border border-red-500/30';
+                messageDiv.textContent = 'Something went wrong. Please email us directly at hello@rapidmvp.dev';
+                messageDiv.classList.remove('hidden');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'SEND MESSAGE';
+            }
+        });
+    </script>
+</body>
+</html>

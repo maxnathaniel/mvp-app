@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creator Social Hub - MVP Mockup</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'DM Sans', sans-serif; background: linear-gradient(to bottom, #fef3c7, #fcd34d); }
+    </style>
+</head>
+<body class="min-h-screen">
+    <div class="container mx-auto px-6 py-8 max-w-7xl">
+        <nav class="bg-white rounded-2xl shadow-xl p-5 mb-6">
+            <div class="flex items-center justify-between">
+                <div class="text-2xl font-bold bg-gradient-to-r from-yellow-500 to-orange-500 bg-clip-text text-transparent">CreatorHub</div>
+                <div class="flex items-center gap-6">
+                    <a href="#" class="text-gray-700 hover:text-yellow-600 font-semibold">Feed</a>
+                    <a href="#" class="text-gray-700 hover:text-yellow-600 font-semibold">Explore</a>
+                    <a href="#" class="text-gray-700 hover:text-yellow-600 font-semibold">Messages</a>
+                    <div class="w-10 h-10 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full"></div>
+                </div>
+            </div>
+        </nav>
+
+        <div class="grid grid-cols-12 gap-6">
+            <aside class="col-span-3">
+                <div class="bg-white rounded-2xl shadow-xl p-6 mb-4">
+                    <div class="text-center mb-4">
+                        <div class="w-20 h-20 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full mx-auto mb-3"></div>
+                        <h3 class="font-bold text-lg">Max Chen</h3>
+                        <p class="text-gray-500 text-sm">@maxcreates</p>
+                    </div>
+                    <div class="flex justify-around text-center py-4 border-t border-gray-100">
+                        <div><div class="font-bold text-lg">124K</div><div class="text-xs text-gray-500">Followers</div></div>
+                        <div><div class="font-bold text-lg">842</div><div class="text-xs text-gray-500">Following</div></div>
+                        <div><div class="font-bold text-lg">1.2K</div><div class="text-xs text-gray-500">Posts</div></div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-2xl shadow-xl p-6">
+                    <h3 class="font-bold mb-4">Trending Topics</h3>
+                    <div class="space-y-3">
+                        <div class="p-3 bg-yellow-50 rounded-lg">
+                            <div class="font-semibold text-sm">#CreatorEconomy</div>
+                            <div class="text-xs text-gray-500">24.5K posts</div>
+                        </div>
+                        <div class="p-3 bg-orange-50 rounded-lg">
+                            <div class="font-semibold text-sm">#ContentCreation</div>
+                            <div class="text-xs text-gray-500">18.2K posts</div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <main class="col-span-6">
+                <div class="bg-white rounded-2xl shadow-xl p-6 mb-6">
+                    <div class="flex gap-4">
+                        <div class="w-12 h-12 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full"></div>
+                        <div class="flex-1">
+                            <textarea class="w-full p-4 border-2 border-gray-200 rounded-xl resize-none focus:border-yellow-500 focus:outline-none" rows="3" placeholder="What's on your mind, Max?"></textarea>
+                            <div class="flex items-center justify-between mt-3">
+                                <div class="flex gap-2">
+                                    <button class="p-2 hover:bg-gray-100 rounded-lg">📷</button>
+                                    <button class="p-2 hover:bg-gray-100 rounded-lg">🎥</button>
+                                    <button class="p-2 hover:bg-gray-100 rounded-lg">📊</button>
+                                </div>
+                                <button class="px-6 py-2 bg-gradient-to-r from-yellow-400 to-orange-500 text-white rounded-xl font-bold">Post</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-6">
+                    <div class="bg-white rounded-2xl shadow-xl p-6">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full"></div>
+                            <div class="flex-1">
+                                <div class="font-bold">Sarah Johnson</div>
+                                <div class="text-sm text-gray-500">2 hours ago</div>
+                            </div>
+                            <button class="text-gray-400 hover:text-gray-600">⋯</button>
+                        </div>
+                        <p class="text-gray-700 mb-4">Just launched my new course on content monetization! 🚀 Check it out and let me know what you think. Link in bio! #CreatorEconomy</p>
+                        <div class="aspect-video bg-gradient-to-br from-purple-200 to-pink-200 rounded-xl mb-4"></div>
+                        <div class="flex items-center gap-6 text-gray-600">
+                            <button class="flex items-center gap-2 hover:text-yellow-600"><span>❤️</span> 1.2K</button>
+                            <button class="flex items-center gap-2 hover:text-yellow-600"><span>💬</span> 184</button>
+                            <button class="flex items-center gap-2 hover:text-yellow-600"><span>🔄</span> 92</button>
+                            <button class="flex items-center gap-2 hover:text-yellow-600"><span>📤</span></button>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl shadow-xl p-6">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-full"></div>
+                            <div class="flex-1">
+                                <div class="font-bold">Mike Anderson</div>
+                                <div class="text-sm text-gray-500">5 hours ago</div>
+                            </div>
+                            <button class="text-gray-400 hover:text-gray-600">⋯</button>
+                        </div>
+                        <p class="text-gray-700 mb-4">My top 5 tips for growing your creator business in 2024. Save this post! 🔖</p>
+                        <div class="flex items-center gap-6 text-gray-600">
+                            <button class="flex items-center gap-2 hover:text-yellow-600"><span>❤️</span> 847</button>
+                            <button class="flex items-center gap-2 hover:text-yellow-600"><span>💬</span> 56</button>
+                            <button class="flex items-center gap-2 hover:text-yellow-600"><span>🔄</span> 124</button>
+                            <button class="flex items-center gap-2 hover:text-yellow-600"><span>📤</span></button>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <aside class="col-span-3">
+                <div class="bg-white rounded-2xl shadow-xl p-6 mb-4">
+                    <h3 class="font-bold mb-4">Suggested Creators</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-gradient-to-br from-green-500 to-emerald-500 rounded-full"></div>
+                            <div class="flex-1">
+                                <div class="font-semibold text-sm">Emma Wilson</div>
+                                <div class="text-xs text-gray-500">@emmacreates</div>
+                            </div>
+                            <button class="px-4 py-1.5 bg-yellow-400 hover:bg-yellow-500 rounded-lg font-semibold text-sm">Follow</button>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-gradient-to-br from-red-500 to-pink-500 rounded-full"></div>
+                            <div class="flex-1">
+                                <div class="font-semibold text-sm">David Lee</div>
+                                <div class="text-xs text-gray-500">@davidart</div>
+                            </div>
+                            <button class="px-4 py-1.5 bg-yellow-400 hover:bg-yellow-500 rounded-lg font-semibold text-sm">Follow</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-br from-yellow-400 to-orange-500 rounded-2xl shadow-xl p-6 text-white">
+                    <h3 class="font-bold text-lg mb-2">💰 Monetization Stats</h3>
+                    <div class="space-y-3">
+                        <div>
+                            <div class="text-2xl font-bold">$4,847</div>
+                            <div class="text-sm opacity-90">This month's earnings</div>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <div><div class="font-bold">124</div><div class="opacity-90">Subscribers</div></div>
+                            <div><div class="font-bold">89</div><div class="opacity-90">Tips</div></div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+</body>
+</html>

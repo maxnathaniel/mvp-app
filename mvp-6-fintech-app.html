@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fintech Dashboard - MVP Mockup</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Archivo', sans-serif;
+            background: #0f172a;
+        }
+    </style>
+</head>
+<body class="min-h-screen text-white">
+    <div class="flex">
+        <aside class="w-64 bg-slate-900 min-h-screen border-r border-slate-800 p-6">
+            <div class="text-2xl font-bold text-yellow-400 mb-8">₿ CryptoWealth</div>
+            <nav class="space-y-2">
+                <a href="#" class="block px-4 py-3 bg-yellow-400/10 text-yellow-400 rounded-lg font-semibold">
+                    📊 Dashboard
+                </a>
+                <a href="#" class="block px-4 py-3 text-gray-400 hover:bg-slate-800 rounded-lg">
+                    💼 Portfolio
+                </a>
+                <a href="#" class="block px-4 py-3 text-gray-400 hover:bg-slate-800 rounded-lg">
+                    📈 Markets
+                </a>
+                <a href="#" class="block px-4 py-3 text-gray-400 hover:bg-slate-800 rounded-lg">
+                    ⚡ Trade
+                </a>
+                <a href="#" class="block px-4 py-3 text-gray-400 hover:bg-slate-800 rounded-lg">
+                    🎯 Staking
+                </a>
+                <a href="#" class="block px-4 py-3 text-gray-400 hover:bg-slate-800 rounded-lg">
+                    ⚙️ Settings
+                </a>
+            </nav>
+        </aside>
+
+        <main class="flex-1 p-8">
+            <div class="flex items-center justify-between mb-8">
+                <div>
+                    <h1 class="text-3xl font-bold mb-2">Portfolio Overview</h1>
+                    <p class="text-gray-400">Track your investments in real-time</p>
+                </div>
+                <div class="flex items-center gap-4">
+                    <button class="px-5 py-2.5 bg-slate-800 rounded-lg hover:bg-slate-700 transition">
+                        Export Report
+                    </button>
+                    <button class="px-5 py-2.5 bg-gradient-to-r from-yellow-400 to-orange-500 text-slate-900 rounded-lg font-bold hover:shadow-lg transition">
+                        + Add Assets
+                    </button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-4 gap-6 mb-8">
+                <div class="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-6 border border-slate-700">
+                    <div class="text-gray-400 text-sm mb-2">Total Balance</div>
+                    <div class="text-3xl font-bold mb-2">$124,847.32</div>
+                    <div class="flex items-center gap-2 text-green-400 text-sm font-semibold">
+                        <span>↑ +15.2%</span>
+                        <span class="text-gray-500">($16,284)</span>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-6 border border-slate-700">
+                    <div class="text-gray-400 text-sm mb-2">24h Change</div>
+                    <div class="text-3xl font-bold mb-2 text-green-400">+$3,247</div>
+                    <div class="flex items-center gap-2 text-green-400 text-sm font-semibold">
+                        <span>↑ +2.67%</span>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-6 border border-slate-700">
+                    <div class="text-gray-400 text-sm mb-2">Total Invested</div>
+                    <div class="text-3xl font-bold mb-2">$98,500.00</div>
+                    <div class="text-gray-400 text-sm">Initial capital</div>
+                </div>
+
+                <div class="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-6 border border-slate-700">
+                    <div class="text-gray-400 text-sm mb-2">Total Profit</div>
+                    <div class="text-3xl font-bold mb-2 text-yellow-400">$26,347.32</div>
+                    <div class="text-green-400 text-sm font-semibold">+26.74% ROI</div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-12 gap-6">
+                <div class="col-span-8 bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-6 border border-slate-700">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-xl font-bold">Portfolio Performance</h2>
+                        <div class="flex gap-2">
+                            <button class="px-4 py-2 bg-yellow-400/10 text-yellow-400 rounded-lg text-sm font-semibold">1D</button>
+                            <button class="px-4 py-2 text-gray-400 hover:bg-slate-700 rounded-lg text-sm">7D</button>
+                            <button class="px-4 py-2 text-gray-400 hover:bg-slate-700 rounded-lg text-sm">1M</button>
+                            <button class="px-4 py-2 text-gray-400 hover:bg-slate-700 rounded-lg text-sm">1Y</button>
+                        </div>
+                    </div>
+                    <div class="h-64 flex items-end justify-between gap-1">
+                        <div class="flex-1 bg-gradient-to-t from-yellow-400 to-orange-500 rounded-t" style="height: 45%"></div>
+                        <div class="flex-1 bg-gradient-to-t from-yellow-400 to-orange-500 rounded-t" style="height: 52%"></div>
+                        <div class="flex-1 bg-gradient-to-t from-yellow-400 to-orange-500 rounded-t" style="height: 48%"></div>
+                        <div class="flex-1 bg-gradient-to-t from-yellow-400 to-orange-500 rounded-t" style="height: 65%"></div>
+                        <div class="flex-1 bg-gradient-to-t from-yellow-400 to-orange-500 rounded-t" style="height: 58%"></div>
+                        <div class="flex-1 bg-gradient-to-t from-yellow-400 to-orange-500 rounded-t" style="height: 71%"></div>
+                        <div class="flex-1 bg-gradient-to-t from-yellow-400 to-orange-500 rounded-t" style="height: 68%"></div>
+                        <div class="flex-1 bg-gradient-to-t from-yellow-400 to-orange-500 rounded-t" style="height: 82%"></div>
+                        <div class="flex-1 bg-gradient-to-t from-yellow-400 to-orange-500 rounded-t" style="height: 75%"></div>
+                        <div class="flex-1 bg-gradient-to-t from-yellow-400 to-orange-500 rounded-t" style="height: 88%"></div>
+                        <div class="flex-1 bg-gradient-to-t from-yellow-400 to-orange-500 rounded-t" style="height: 92%"></div>
+                        <div class="flex-1 bg-gradient-to-t from-yellow-400 to-orange-500 rounded-t" style="height: 85%"></div>
+                    </div>
+                </div>
+
+                <div class="col-span-4 bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-6 border border-slate-700">
+                    <h2 class="text-xl font-bold mb-6">Asset Distribution</h2>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-sm font-semibold">Bitcoin (BTC)</span>
+                                <span class="text-sm text-yellow-400 font-bold">45%</span>
+                            </div>
+                            <div class="bg-slate-700 rounded-full h-2">
+                                <div class="bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full h-2" style="width: 45%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-sm font-semibold">Ethereum (ETH)</span>
+                                <span class="text-sm text-blue-400 font-bold">30%</span>
+                            </div>
+                            <div class="bg-slate-700 rounded-full h-2">
+                                <div class="bg-blue-400 rounded-full h-2" style="width: 30%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-sm font-semibold">Cardano (ADA)</span>
+                                <span class="text-sm text-purple-400 font-bold">15%</span>
+                            </div>
+                            <div class="bg-slate-700 rounded-full h-2">
+                                <div class="bg-purple-400 rounded-full h-2" style="width: 15%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-sm font-semibold">Solana (SOL)</span>
+                                <span class="text-sm text-green-400 font-bold">10%</span>
+                            </div>
+                            <div class="bg-slate-700 rounded-full h-2">
+                                <div class="bg-green-400 rounded-full h-2" style="width: 10%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-span-12 bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-6 border border-slate-700">
+                    <h2 class="text-xl font-bold mb-6">Your Holdings</h2>
+                    <table class="w-full">
+                        <thead>
+                            <tr class="border-b border-slate-700">
+                                <th class="text-left py-3 text-sm font-semibold text-gray-400">Asset</th>
+                                <th class="text-left py-3 text-sm font-semibold text-gray-400">Price</th>
+                                <th class="text-left py-3 text-sm font-semibold text-gray-400">Holdings</th>
+                                <th class="text-left py-3 text-sm font-semibold text-gray-400">Value</th>
+                                <th class="text-left py-3 text-sm font-semibold text-gray-400">24h Change</th>
+                                <th class="text-left py-3 text-sm font-semibold text-gray-400">P/L</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b border-slate-800 hover:bg-slate-800/50">
+                                <td class="py-4">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-10 h-10 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full"></div>
+                                        <div>
+                                            <div class="font-bold">Bitcoin</div>
+                                            <div class="text-sm text-gray-400">BTC</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="py-4 font-semibold">$43,287.50</td>
+                                <td class="py-4 text-gray-400">1.2847 BTC</td>
+                                <td class="py-4 font-bold">$55,613.87</td>
+                                <td class="py-4 text-green-400 font-semibold">+3.24%</td>
+                                <td class="py-4 text-green-400 font-bold">+$8,234.12</td>
+                            </tr>
+                            <tr class="border-b border-slate-800 hover:bg-slate-800/50">
+                                <td class="py-4">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-full"></div>
+                                        <div>
+                                            <div class="font-bold">Ethereum</div>
+                                            <div class="text-sm text-gray-400">ETH</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="py-4 font-semibold">$2,284.32</td>
+                                <td class="py-4 text-gray-400">16.4521 ETH</td>
+                                <td class="py-4 font-bold">$37,584.23</td>
+                                <td class="py-4 text-green-400 font-semibold">+2.15%</td>
+                                <td class="py-4 text-green-400 font-bold">+$5,128.47</td>
+                            </tr>
+                            <tr class="border-b border-slate-800 hover:bg-slate-800/50">
+                                <td class="py-4">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full"></div>
+                                        <div>
+                                            <div class="font-bold">Cardano</div>
+                                            <div class="text-sm text-gray-400">ADA</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="py-4 font-semibold">$0.48</td>
+                                <td class="py-4 text-gray-400">38,942 ADA</td>
+                                <td class="py-4 font-bold">$18,692.16</td>
+                                <td class="py-4 text-red-400 font-semibold">-1.23%</td>
+                                <td class="py-4 text-green-400 font-bold">+$2,341.89</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

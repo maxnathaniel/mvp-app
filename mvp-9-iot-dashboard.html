@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IoT Device Manager - MVP Mockup</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: system-ui, sans-serif; background: #0a0f1c; color: white; }
+    </style>
+</head>
+<body class="min-h-screen">
+    <div class="flex">
+        <aside class="w-64 bg-slate-900 min-h-screen border-r border-slate-800 p-6">
+            <div class="text-2xl font-bold text-purple-400 mb-8">⚡ IoT Central</div>
+            <nav class="space-y-2">
+                <a href="#" class="block px-4 py-3 bg-purple-500/20 text-purple-400 rounded-lg font-semibold">Dashboard</a>
+                <a href="#" class="block px-4 py-3 text-gray-400 hover:bg-slate-800 rounded-lg">Devices</a>
+                <a href="#" class="block px-4 py-3 text-gray-400 hover:bg-slate-800 rounded-lg">Analytics</a>
+                <a href="#" class="block px-4 py-3 text-gray-400 hover:bg-slate-800 rounded-lg">Automations</a>
+                <a href="#" class="block px-4 py-3 text-gray-400 hover:bg-slate-800 rounded-lg">Alerts</a>
+                <a href="#" class="block px-4 py-3 text-gray-400 hover:bg-slate-800 rounded-lg">Settings</a>
+            </nav>
+        </aside>
+
+        <main class="flex-1 p-8">
+            <div class="mb-8">
+                <h1 class="text-3xl font-bold mb-2">Device Dashboard</h1>
+                <p class="text-gray-400">Monitor and control all your IoT devices in real-time</p>
+            </div>
+
+            <div class="grid grid-cols-4 gap-6 mb-8">
+                <div class="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-6 border border-purple-500/30">
+                    <div class="text-gray-400 text-sm mb-2">Total Devices</div>
+                    <div class="text-4xl font-bold mb-2">127</div>
+                    <div class="text-green-400 text-sm font-semibold">✓ 124 Online</div>
+                </div>
+                <div class="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-6 border border-purple-500/30">
+                    <div class="text-gray-400 text-sm mb-2">Active Alerts</div>
+                    <div class="text-4xl font-bold mb-2 text-yellow-400">3</div>
+                    <div class="text-yellow-400 text-sm font-semibold">⚠ Needs attention</div>
+                </div>
+                <div class="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-6 border border-purple-500/30">
+                    <div class="text-gray-400 text-sm mb-2">Energy Usage</div>
+                    <div class="text-4xl font-bold mb-2">847</div>
+                    <div class="text-green-400 text-sm font-semibold">kWh today</div>
+                </div>
+                <div class="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-6 border border-purple-500/30">
+                    <div class="text-gray-400 text-sm mb-2">Data Transferred</div>
+                    <div class="text-4xl font-bold mb-2">2.4</div>
+                    <div class="text-blue-400 text-sm font-semibold">TB this month</div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-12 gap-6 mb-6">
+                <div class="col-span-8 bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-6 border border-purple-500/30">
+                    <h2 class="text-xl font-bold mb-6">Device Status Overview</h2>
+                    <div class="h-64 flex items-end justify-between gap-2">
+                        <div class="flex-1 flex flex-col items-center">
+                            <div class="w-full bg-gradient-to-t from-purple-600 to-purple-400 rounded-t-lg" style="height: 85%"></div>
+                            <span class="text-xs text-gray-400 mt-2">00:00</span>
+                        </div>
+                        <div class="flex-1 flex flex-col items-center">
+                            <div class="w-full bg-gradient-to-t from-purple-600 to-purple-400 rounded-t-lg" style="height: 78%"></div>
+                            <span class="text-xs text-gray-400 mt-2">04:00</span>
+                        </div>
+                        <div class="flex-1 flex flex-col items-center">
+                            <div class="w-full bg-gradient-to-t from-purple-600 to-purple-400 rounded-t-lg" style="height: 65%"></div>
+                            <span class="text-xs text-gray-400 mt-2">08:00</span>
+                        </div>
+                        <div class="flex-1 flex flex-col items-center">
+                            <div class="w-full bg-gradient-to-t from-purple-600 to-purple-400 rounded-t-lg" style="height: 92%"></div>
+                            <span class="text-xs text-gray-400 mt-2">12:00</span>
+                        </div>
+                        <div class="flex-1 flex flex-col items-center">
+                            <div class="w-full bg-gradient-to-t from-purple-600 to-purple-400 rounded-t-lg" style="height: 88%"></div>
+                            <span class="text-xs text-gray-400 mt-2">16:00</span>
+                        </div>
+                        <div class="flex-1 flex flex-col items-center">
+                            <div class="w-full bg-gradient-to-t from-purple-600 to-purple-400 rounded-t-lg" style="height: 95%"></div>
+                            <span class="text-xs text-gray-400 mt-2">20:00</span>
+                        </div>
+                        <div class="flex-1 flex flex-col items-center">
+                            <div class="w-full bg-gradient-to-t from-purple-600 to-purple-400 rounded-t-lg" style="height: 72%"></div>
+                            <span class="text-xs text-gray-400 mt-2">24:00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-span-4 bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-6 border border-purple-500/30">
+                    <h2 class="text-xl font-bold mb-6">Recent Alerts</h2>
+                    <div class="space-y-3">
+                        <div class="p-3 bg-red-500/10 border border-red-500/30 rounded-lg">
+                            <div class="font-semibold text-sm text-red-400">High Temperature</div>
+                            <div class="text-xs text-gray-400 mt-1">Sensor #A42 - 2 min ago</div>
+                        </div>
+                        <div class="p-3 bg-yellow-500/10 border border-yellow-500/30 rounded-lg">
+                            <div class="font-semibold text-sm text-yellow-400">Low Battery</div>
+                            <div class="text-xs text-gray-400 mt-1">Device #B18 - 15 min ago</div>
+                        </div>
+                        <div class="p-3 bg-blue-500/10 border border-blue-500/30 rounded-lg">
+                            <div class="font-semibold text-sm text-blue-400">Connection Issue</div>
+                            <div class="text-xs text-gray-400 mt-1">Gateway #3 - 1 hour ago</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-6 border border-purple-500/30">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-xl font-bold">Connected Devices</h2>
+                    <button class="px-4 py-2 bg-purple-600 hover:bg-purple-700 rounded-lg font-semibold">+ Add Device</button>
+                </div>
+                <div class="grid grid-cols-4 gap-4">
+                    <div class="bg-slate-800/50 rounded-xl p-5 border border-purple-500/20 hover:border-purple-500 transition">
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="text-3xl">🌡️</div>
+                            <div class="px-2 py-1 bg-green-500/20 text-green-400 text-xs font-bold rounded">ONLINE</div>
+                        </div>
+                        <div class="font-bold mb-1">Temperature Sensor</div>
+                        <div class="text-2xl font-bold text-purple-400 mb-1">24.5°C</div>
+                        <div class="text-xs text-gray-400">Living Room • ID: A42</div>
+                    </div>
+
+                    <div class="bg-slate-800/50 rounded-xl p-5 border border-purple-500/20 hover:border-purple-500 transition">
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="text-3xl">💡</div>
+                            <div class="px-2 py-1 bg-green-500/20 text-green-400 text-xs font-bold rounded">ONLINE</div>
+                        </div>
+                        <div class="font-bold mb-1">Smart Light</div>
+                        <div class="text-2xl font-bold text-purple-400 mb-1">ON</div>
+                        <div class="text-xs text-gray-400">Bedroom • ID: L15</div>
+                    </div>
+
+                    <div class="bg-slate-800/50 rounded-xl p-5 border border-purple-500/20 hover:border-purple-500 transition">
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="text-3xl">🔒</div>
+                            <div class="px-2 py-1 bg-green-500/20 text-green-400 text-xs font-bold rounded">ONLINE</div>
+                        </div>
+                        <div class="font-bold mb-1">Smart Lock</div>
+                        <div class="text-2xl font-bold text-purple-400 mb-1">LOCKED</div>
+                        <div class="text-xs text-gray-400">Front Door • ID: D01</div>
+                    </div>
+
+                    <div class="bg-slate-800/50 rounded-xl p-5 border border-yellow-500/20 hover:border-yellow-500 transition">
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="text-3xl">📹</div>
+                            <div class="px-2 py-1 bg-yellow-500/20 text-yellow-400 text-xs font-bold rounded">WARNING</div>
+                        </div>
+                        <div class="font-bold mb-1">Security Camera</div>
+                        <div class="text-2xl font-bold text-yellow-400 mb-1">LOW BAT</div>
+                        <div class="text-xs text-gray-400">Garage • ID: C22</div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
